@@ -1,0 +1,67 @@
+{
+  "manifestVersion": "3.1",
+  "impls": {
+    "6e075c43007dbdf04c0dd137d1a0f0d6d239802766e0709c9402f0c77ffcf0cd": {
+      "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+      "txHash": "0x2cce1aa2792ff635e95eb0a3759d8366376ccbb7589683684e078c9aba98b82c",
+      "layout": {
+        "storage": [
+          {
+            "contract": "CelebrityContract",
+            "label": "celebrities",
+            "type": "t_mapping(t_address,t_struct(Celebrity)4259_storage)",
+            "src": "contracts\\CelebrityContract.sol:20"
+          },
+          {
+            "contract": "CelebrityContract",
+            "label": "totalSupply",
+            "type": "t_uint256",
+            "src": "contracts\\CelebrityContract.sol:21"
+          }
+        ],
+        "types": {
+          "t_mapping(t_address,t_struct(Celebrity)4259_storage)": {
+            "label": "mapping(address => struct CelebrityContract.Celebrity)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_struct(Celebrity)4259_storage": {
+            "label": "struct CelebrityContract.Celebrity",
+            "members": [
+              {
+                "label": "name",
+                "type": "t_string_storage"
+              },
+              {
+                "label": "price",
+                "type": "t_uint256"
+              },
+              {
+                "label": "responseTime",
+                "type": "t_uint256"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool"
+              }
+            ]
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_bool": {
+            "label": "bool"
+          }
+        }
+      }
+    }
+  },
+  "admin": {
+    "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+    "txHash": "0xe463198202c0854ff973aabeab578e5e88577b42d866839398d50731756459f2"
+  }
+}
