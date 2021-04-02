@@ -1,11 +1,11 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "./CelebrityContract.sol";
 import "./AutographContract.sol";
 
-contract AutographRequestContract is Ownable {
+contract AutographRequestContract is OwnableUpgradeable {
 
     // Structs
     struct Request {
@@ -30,11 +30,12 @@ contract AutographRequestContract is Ownable {
     event FeePercentChanged(uint feePercent);
 
     /**
-     @notice Contract constructor.
+     @notice Contract initializer.
      @param _celebrityContract - Celebrity contract address.
      @param _autographContract - NFT Token address.
      */
-    constructor(address _celebrityContract, address _autographContract) {
+    function initialize(address _celebrityContract, address _autographContract) public initializer {
+        __Ownable_init();
         celebrityContract = CelebrityContract(_celebrityContract);
         autographContract = AutographContract(_autographContract);
         feePercent = 10; // %
@@ -144,7 +145,7 @@ contract AutographRequestContract is Ownable {
      @notice Returns contract fee percent.
      @return Current fee percent.
      */
-    function getFeePercent() public view onlyOwner returns (uint) {
+    function getFeePercent() public view returns (uint) {
         return feePercent;
     }
 

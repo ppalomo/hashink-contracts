@@ -34,14 +34,12 @@ describe("Request Contract", function() {
 
         // Deploying autograph contract
         AutographContract = await ethers.getContractFactory("AutographContract");
-        //autographContract = await upgrades.deployProxy(AutographContract);
-        autographContract = await AutographContract.deploy();
+        autographContract = await upgrades.deployProxy(AutographContract);
         expect(autographContract.address).to.properAddress;
 
         // Deploying requests contract
         AutographRequestContract = await ethers.getContractFactory("AutographRequestContract");
-        //requestsContract = await upgrades.deployProxy(AutographRequestContract, celebrityContract.address, autographContract.address);
-        requestsContract = await AutographRequestContract.deploy(celebrityContract.address, autographContract.address);
+        requestsContract = await upgrades.deployProxy(AutographRequestContract, [celebrityContract.address, autographContract.address], { initializer: 'initialize' });
         expect(requestsContract.address).to.properAddress;
 
         // Getting tests accounts
@@ -111,7 +109,7 @@ describe("Request Contract", function() {
             ).to.be.revertedWith('You must wait the response time to delete this request');
         });
 
-        it("Shouldn't delete a request when sender is not the owner ", async function () {
+        it("Shouldn't delete a request when sender is not the owner", async function () {
             const responseTime = 0;
             
             await celebrityContract.connect(addr1).createCelebrity(name, price, responseTime);
@@ -166,7 +164,7 @@ describe("Request Contract", function() {
         });
 
         it("Should send fees to owner when signing a request", async function () {
-            const feePercent = await requestsContract.connect(owner).getFeePercent();
+            const feePercent = await requestsContract.getFeePercent();
             const fee = price * feePercent / 100;
             const ownerBalance = await owner.getBalance();
             const celebBalance = await addr1.getBalance();
@@ -190,6 +188,22 @@ describe("Request Contract", function() {
 
             await expect(
                 requestsContract.connect(addr1).signRequest(0, metadata)
+            ).to.be.reverted;
+        });
+
+    });
+
+    describe("Fees Management", function() {
+
+        it("Should be able to update fee percent", async function () {   
+            expect(await requestsContract.getFeePercent()).to.equal(10);
+            await requestsContract.connect(owner).setFeePercent(20);
+            expect(await requestsContract.getFeePercent()).to.equal(20);
+        });
+
+        it("Shouldn't be able to update fee percent when sender is not the owner", async function () {   
+            await expect(
+                requestsContract.connect(addr1).setFeePercent(20)
             ).to.be.reverted;
         });
 

@@ -1,11 +1,11 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
 
-contract AutographContract is ERC721 {
+contract AutographContract is ERC721Upgradeable {
 
     // Variables
     using Counters for Counters.Counter;
@@ -15,9 +15,11 @@ contract AutographContract is ERC721 {
     event ReceivedRoyalties(address indexed _royaltyRecipient, address indexed _buyer, uint256 indexed _tokenId, address _tokenPaid, uint256 _amount);
 
     /**
-     @notice Contract constructor.
+     @notice Contract initializer.
      */
-    constructor() ERC721("Hashink Autograph Token", "SIGN") {}
+    function initialize() initializer public {
+        __ERC721_init("Hashink Autograph Token", "SIGN");
+    }
 
     /** 
      @notice Function used to mint a new NFT.

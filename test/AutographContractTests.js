@@ -1,4 +1,4 @@
-const { ethers } = require("hardhat");
+const { ethers, upgrades } = require("hardhat");
 const { use, expect, assert } = require("chai");
 const { solidity } = require("ethereum-waffle");
 
@@ -27,17 +27,17 @@ describe("Autograph Contract", function() {
     
         // Deploying celebrities contract
         CelebrityContract = await ethers.getContractFactory("CelebrityContract");
-        celebrityContract = await CelebrityContract.deploy();
+        celebrityContract = await upgrades.deployProxy(CelebrityContract);
         expect(celebrityContract.address).to.properAddress;
 
         // Deploying autograph contract
         AutographContract = await ethers.getContractFactory("AutographContract");
-        autographContract = await AutographContract.deploy();
+        autographContract = await upgrades.deployProxy(AutographContract);
         expect(autographContract.address).to.properAddress;
 
         // Deploying requests contract
         AutographRequestContract = await ethers.getContractFactory("AutographRequestContract");
-        requestsContract = await AutographRequestContract.deploy(celebrityContract.address, autographContract.address);
+        requestsContract = await upgrades.deployProxy(AutographRequestContract, [celebrityContract.address, autographContract.address], { initializer: 'initialize' });
         expect(requestsContract.address).to.properAddress;
 
         // Getting tests accounts
