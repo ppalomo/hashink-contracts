@@ -10,6 +10,7 @@ contract AutographContract is ERC721Upgradeable {
     // Variables
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
+    uint public version;
 
     // Events
     event ReceivedRoyalties(address indexed _royaltyRecipient, address indexed _buyer, uint256 indexed _tokenId, address _tokenPaid, uint256 _amount);
@@ -19,6 +20,7 @@ contract AutographContract is ERC721Upgradeable {
      */
     function initialize() initializer public {
         __ERC721_init("Hashink Autograph Token", "SIGN");
+        version = 1;
     }
 
     /** 

@@ -4,7 +4,7 @@ require("@nomiclabs/hardhat-etherscan");
 require("@openzeppelin/hardhat-upgrades");
 
 module.exports = {
-  solidity: "0.7.3",
+  solidity: "0.7.0",
   networks: {
     goerli: {
       url: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,

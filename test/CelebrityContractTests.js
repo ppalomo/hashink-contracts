@@ -33,6 +33,23 @@ describe("Celebrity Contract", function () {
 
     });
 
+    describe("Upgrade Contract", function () {
+
+        it("Should upgrade contract", async function () {
+            await celebrityContract.connect(addr1).createCelebrity(name, price, responseTime);
+            await celebrityContract.connect(addr2).createCelebrity("Vitalik Buterin", ethers.utils.parseEther('4'), 0);
+            
+            expect(await celebrityContract.getTotalSupply()).to.equal(2);
+
+            let CelebrityContractV2;
+            CelebrityContractV2 = await ethers.getContractFactory("CelebrityContractV2");
+            celebrityContract = await upgrades.upgradeProxy(celebrityContract.address, CelebrityContractV2);
+
+            expect(await celebrityContract.getTotalSupply()).to.equal(2);
+        });
+
+    });
+
     describe("Create Celebrity", function() {
 
         it("Should create a new celebrity", async function () {
@@ -47,6 +64,24 @@ describe("Celebrity Contract", function () {
             expect(celeb[2]).to.equal(responseTime);
             expect(celeb[3]).to.equal(true);
             expect(await celebrityContract.getTotalSupply()).to.equal(1);
+        });
+
+        it("Should create a bunch of celebrities", async function () {
+            await expect(
+                celebrityContract.connect(addr1).createCelebrity(name, price, responseTime)
+            ).to.emit(celebrityContract, 'CelebrityCreated');
+
+            await expect(
+                celebrityContract.connect(addr2).createCelebrity("Homer Simpson", price, 0)
+            ).to.emit(celebrityContract, 'CelebrityCreated');
+            
+            const celeb = await celebrityContract.celebrities(addr1.address);            
+            expect(celeb[0]).to.equal(name);
+            expect(celeb[1]).to.equal(price);
+            expect(celeb[2]).to.equal(responseTime);
+            expect(celeb[3]).to.equal(true);
+
+            expect(await celebrityContract.getTotalSupply()).to.equal(2);
         });
 
         it("Shouldn't create two celebrities with same address", async function () {

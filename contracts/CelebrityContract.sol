@@ -1,12 +1,13 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
+import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 import "hardhat/console.sol";
 
 /**
  * This contract manages celebrities information on-chain.
  */
-contract CelebrityContract {
+contract CelebrityContract is Initializable{
 
     // Structs
     struct Celebrity {
@@ -19,6 +20,7 @@ contract CelebrityContract {
     // Variables
     mapping(address => Celebrity) public celebrities;
     uint private totalSupply;
+    uint public version;
 
     // Events
     event CelebrityCreated(address indexed owner, string name, uint price, uint responseTime);
@@ -26,9 +28,11 @@ contract CelebrityContract {
     event CelebrityUpdated(address indexed owner, string name, uint price, uint responseTime);
 
     /**
-    @notice Constructor method.
+     @notice Contract initializer.
      */
-    constructor () {}
+    function initialize() public initializer {
+        version = 1;
+    }
 
     /**
     @notice Creates a new celebrity.

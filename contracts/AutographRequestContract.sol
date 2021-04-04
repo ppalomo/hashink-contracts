@@ -22,6 +22,7 @@ contract AutographRequestContract is OwnableUpgradeable {
     Request[] public requests;
     uint numberOfPendingRequests;
     uint private feePercent;
+    uint public version;
 
     // Events
     event RequestCreated(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
@@ -39,6 +40,7 @@ contract AutographRequestContract is OwnableUpgradeable {
         celebrityContract = CelebrityContract(_celebrityContract);
         autographContract = AutographContract(_autographContract);
         feePercent = 10; // %
+        version = 1;
     }
 
     /**
