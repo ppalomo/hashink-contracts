@@ -2,43 +2,6 @@
   "version": "3",
   "log": [
     {
-      "OwnableUpgradeable": {
-        "inherit": [
-          "ContextUpgradeable",
-          "Initializable"
-        ],
-        "libraries": [],
-        "linkReferences": [],
-        "errors": [],
-        "layout": {
-          "storage": [
-            {
-              "contract": "OwnableUpgradeable",
-              "label": "_owner",
-              "type": "t_address",
-              "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:20"
-            },
-            {
-              "contract": "OwnableUpgradeable",
-              "label": "__gap",
-              "type": "t_array(t_uint256)49_storage",
-              "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
-            }
-          ],
-          "types": {
-            "t_address": {
-              "label": "address"
-            },
-            "t_array(t_uint256)49_storage": {
-              "label": "uint256[49]"
-            },
-            "t_uint256": {
-              "label": "uint256"
-            }
-          },
-          "layoutVersion": "1.1"
-        }
-      },
       "ERC165Upgradeable": {
         "inherit": [
           "IERC165Upgradeable",
@@ -168,13 +131,13 @@
             {
               "contract": "ERC721Upgradeable",
               "label": "_holderTokens",
-              "type": "t_mapping(t_address,t_struct(UintSet)3050_storage)",
+              "type": "t_mapping(t_address,t_struct(UintSet)2919_storage)",
               "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC721\\ERC721Upgradeable.sol:34"
             },
             {
               "contract": "ERC721Upgradeable",
               "label": "_tokenOwners",
-              "type": "t_struct(UintToAddressMap)2427_storage",
+              "type": "t_struct(UintToAddressMap)2296_storage",
               "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC721\\ERC721Upgradeable.sol:37"
             },
             {
@@ -221,22 +184,22 @@
             }
           ],
           "types": {
-            "t_mapping(t_address,t_struct(UintSet)3050_storage)": {
+            "t_mapping(t_address,t_struct(UintSet)2919_storage)": {
               "label": "mapping(address => struct EnumerableSetUpgradeable.UintSet)"
             },
             "t_address": {
               "label": "address"
             },
-            "t_struct(UintSet)3050_storage": {
+            "t_struct(UintSet)2919_storage": {
               "label": "struct EnumerableSetUpgradeable.UintSet",
               "members": [
                 {
                   "label": "_inner",
-                  "type": "t_struct(Set)2664_storage"
+                  "type": "t_struct(Set)2533_storage"
                 }
               ]
             },
-            "t_struct(Set)2664_storage": {
+            "t_struct(Set)2533_storage": {
               "label": "struct EnumerableSetUpgradeable.Set",
               "members": [
                 {
@@ -261,21 +224,21 @@
             "t_uint256": {
               "label": "uint256"
             },
-            "t_struct(UintToAddressMap)2427_storage": {
+            "t_struct(UintToAddressMap)2296_storage": {
               "label": "struct EnumerableMapUpgradeable.UintToAddressMap",
               "members": [
                 {
                   "label": "_inner",
-                  "type": "t_struct(Map)2109_storage"
+                  "type": "t_struct(Map)1978_storage"
                 }
               ]
             },
-            "t_struct(Map)2109_storage": {
+            "t_struct(Map)1978_storage": {
               "label": "struct EnumerableMapUpgradeable.Map",
               "members": [
                 {
                   "label": "_entries",
-                  "type": "t_array(t_struct(MapEntry)2101_storage)dyn_storage"
+                  "type": "t_array(t_struct(MapEntry)1970_storage)dyn_storage"
                 },
                 {
                   "label": "_indexes",
@@ -283,10 +246,10 @@
                 }
               ]
             },
-            "t_array(t_struct(MapEntry)2101_storage)dyn_storage": {
+            "t_array(t_struct(MapEntry)1970_storage)dyn_storage": {
               "label": "struct EnumerableMapUpgradeable.MapEntry[]"
             },
-            "t_struct(MapEntry)2101_storage": {
+            "t_struct(MapEntry)1970_storage": {
               "label": "struct EnumerableMapUpgradeable.MapEntry",
               "members": [
                 {
@@ -527,7 +490,7 @@
             {
               "contract": "AutographContract",
               "label": "_tokenIds",
-              "type": "t_struct(Counter)3597_storage",
+              "type": "t_struct(Counter)3466_storage",
               "src": "contracts\\AutographContract.sol:12"
             },
             {
@@ -538,7 +501,7 @@
             }
           ],
           "types": {
-            "t_struct(Counter)3597_storage": {
+            "t_struct(Counter)3466_storage": {
               "label": "struct Counters.Counter",
               "members": [
                 {
@@ -549,316 +512,6 @@
             },
             "t_uint256": {
               "label": "uint256"
-            }
-          },
-          "layoutVersion": "1.1"
-        }
-      },
-      "AutographRequestContract": {
-        "version": {
-          "withMetadata": "6511664c42edc4ce8d340ae86382ae609a44380d6853bed608b9486b6fee334d",
-          "withoutMetadata": "d109ca631ce691feda54e4ed155593a89de98c2b6a40e541eeb272eabcb7548b",
-          "linkedWithoutMetadata": "d109ca631ce691feda54e4ed155593a89de98c2b6a40e541eeb272eabcb7548b"
-        },
-        "inherit": [
-          "OwnableUpgradeable",
-          "ContextUpgradeable",
-          "Initializable"
-        ],
-        "libraries": [],
-        "linkReferences": [],
-        "errors": [],
-        "layout": {
-          "storage": [
-            {
-              "contract": "AutographRequestContract",
-              "label": "celebrityContract",
-              "type": "t_contract(CelebrityContract)4344",
-              "src": "contracts\\AutographRequestContract.sol:20"
-            },
-            {
-              "contract": "AutographRequestContract",
-              "label": "autographContract",
-              "type": "t_contract(AutographContract)3714",
-              "src": "contracts\\AutographRequestContract.sol:21"
-            },
-            {
-              "contract": "AutographRequestContract",
-              "label": "requests",
-              "type": "t_array(t_struct(Request)3732_storage)dyn_storage",
-              "src": "contracts\\AutographRequestContract.sol:22"
-            },
-            {
-              "contract": "AutographRequestContract",
-              "label": "numberOfPendingRequests",
-              "type": "t_uint256",
-              "src": "contracts\\AutographRequestContract.sol:23"
-            },
-            {
-              "contract": "AutographRequestContract",
-              "label": "feePercent",
-              "type": "t_uint256",
-              "src": "contracts\\AutographRequestContract.sol:24"
-            },
-            {
-              "contract": "AutographRequestContract",
-              "label": "version",
-              "type": "t_uint256",
-              "src": "contracts\\AutographRequestContract.sol:25"
-            }
-          ],
-          "types": {
-            "t_contract(CelebrityContract)4344": {
-              "label": "contract CelebrityContract"
-            },
-            "t_contract(AutographContract)3714": {
-              "label": "contract AutographContract"
-            },
-            "t_array(t_struct(Request)3732_storage)dyn_storage": {
-              "label": "struct AutographRequestContract.Request[]"
-            },
-            "t_struct(Request)3732_storage": {
-              "label": "struct AutographRequestContract.Request",
-              "members": [
-                {
-                  "label": "from",
-                  "type": "t_address"
-                },
-                {
-                  "label": "to",
-                  "type": "t_address"
-                },
-                {
-                  "label": "price",
-                  "type": "t_uint256"
-                },
-                {
-                  "label": "responseTime",
-                  "type": "t_uint256"
-                },
-                {
-                  "label": "created",
-                  "type": "t_uint256"
-                }
-              ]
-            },
-            "t_address": {
-              "label": "address"
-            },
-            "t_uint256": {
-              "label": "uint256"
-            }
-          },
-          "layoutVersion": "1.1"
-        }
-      },
-      "CelebrityContract": {
-        "version": {
-          "withMetadata": "8128ecae2484191f95e96e42afac7d5b020b7a193645164dfefe47cc0dba353a",
-          "withoutMetadata": "fde06076b66ba3545d76a6d629962414bb3a3e717609da6cda4fe29ba715b22e",
-          "linkedWithoutMetadata": "fde06076b66ba3545d76a6d629962414bb3a3e717609da6cda4fe29ba715b22e"
-        },
-        "inherit": [
-          "Initializable"
-        ],
-        "libraries": [],
-        "linkReferences": [],
-        "errors": [],
-        "layout": {
-          "storage": [
-            {
-              "contract": "CelebrityContract",
-              "label": "celebrities",
-              "type": "t_mapping(t_address,t_struct(Celebrity)4159_storage)",
-              "src": "contracts\\CelebrityContract.sol:21"
-            },
-            {
-              "contract": "CelebrityContract",
-              "label": "totalSupply",
-              "type": "t_uint256",
-              "src": "contracts\\CelebrityContract.sol:22"
-            },
-            {
-              "contract": "CelebrityContract",
-              "label": "version",
-              "type": "t_uint256",
-              "src": "contracts\\CelebrityContract.sol:23"
-            }
-          ],
-          "types": {
-            "t_mapping(t_address,t_struct(Celebrity)4159_storage)": {
-              "label": "mapping(address => struct CelebrityContract.Celebrity)"
-            },
-            "t_address": {
-              "label": "address"
-            },
-            "t_struct(Celebrity)4159_storage": {
-              "label": "struct CelebrityContract.Celebrity",
-              "members": [
-                {
-                  "label": "name",
-                  "type": "t_string_storage"
-                },
-                {
-                  "label": "price",
-                  "type": "t_uint256"
-                },
-                {
-                  "label": "responseTime",
-                  "type": "t_uint256"
-                },
-                {
-                  "label": "exists",
-                  "type": "t_bool"
-                }
-              ]
-            },
-            "t_string_storage": {
-              "label": "string"
-            },
-            "t_uint256": {
-              "label": "uint256"
-            },
-            "t_bool": {
-              "label": "bool"
-            }
-          },
-          "layoutVersion": "1.1"
-        }
-      },
-      "console": {
-        "version": {
-          "withMetadata": "bc1d0a77873d2b67f006baf87c710031dffdf705c19e353ae82d093385f29016",
-          "withoutMetadata": "aaa148c474cd10e1a6cd0a52c0b55f1aa9b7bb7b42d7f1cb5acaea4f42f04bc8",
-          "linkedWithoutMetadata": "aaa148c474cd10e1a6cd0a52c0b55f1aa9b7bb7b42d7f1cb5acaea4f42f04bc8"
-        },
-        "inherit": [],
-        "libraries": [],
-        "linkReferences": [],
-        "errors": [],
-        "layout": {
-          "storage": [],
-          "types": {},
-          "layoutVersion": "1.1"
-        }
-      }
-    },
-    {
-      "Initializable": {
-        "inherit": [],
-        "libraries": [
-          "AddressUpgradeable"
-        ],
-        "linkReferences": [],
-        "errors": [],
-        "layout": {
-          "storage": [
-            {
-              "contract": "Initializable",
-              "label": "_initialized",
-              "type": "t_bool",
-              "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:25"
-            },
-            {
-              "contract": "Initializable",
-              "label": "_initializing",
-              "type": "t_bool",
-              "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:30"
-            }
-          ],
-          "types": {
-            "t_bool": {
-              "label": "bool"
-            }
-          },
-          "layoutVersion": "1.1"
-        }
-      },
-      "AddressUpgradeable": {
-        "version": {
-          "withMetadata": "ca5ba1de1c19d4502fca50d293f0ad067373918c8386491a288d663b70c98a2f",
-          "withoutMetadata": "aaa148c474cd10e1a6cd0a52c0b55f1aa9b7bb7b42d7f1cb5acaea4f42f04bc8",
-          "linkedWithoutMetadata": "aaa148c474cd10e1a6cd0a52c0b55f1aa9b7bb7b42d7f1cb5acaea4f42f04bc8"
-        },
-        "inherit": [],
-        "libraries": [],
-        "linkReferences": [],
-        "errors": [],
-        "layout": {
-          "storage": [],
-          "types": {},
-          "layoutVersion": "1.1"
-        }
-      },
-      "CelebrityContractV2": {
-        "version": {
-          "withMetadata": "bd0ffdda2640ca79a0d0fbc794ba8464fe6b14c6ee3f918cbcb41e0232235a1e",
-          "withoutMetadata": "1ab3f905f713cfc37fd163630249257716085ef59f6f6a26d6f6c80d9a86c553",
-          "linkedWithoutMetadata": "1ab3f905f713cfc37fd163630249257716085ef59f6f6a26d6f6c80d9a86c553"
-        },
-        "inherit": [
-          "Initializable"
-        ],
-        "libraries": [],
-        "linkReferences": [],
-        "errors": [],
-        "layout": {
-          "storage": [
-            {
-              "contract": "CelebrityContractV2",
-              "label": "celebrities",
-              "type": "t_mapping(t_address,t_struct(Celebrity)325_storage)",
-              "src": "contracts\\CelebrityContractV2.sol:21"
-            },
-            {
-              "contract": "CelebrityContractV2",
-              "label": "totalSupply",
-              "type": "t_uint256",
-              "src": "contracts\\CelebrityContractV2.sol:22"
-            },
-            {
-              "contract": "CelebrityContractV2",
-              "label": "version",
-              "type": "t_uint256",
-              "src": "contracts\\CelebrityContractV2.sol:23"
-            }
-          ],
-          "types": {
-            "t_mapping(t_address,t_struct(Celebrity)325_storage)": {
-              "label": "mapping(address => struct CelebrityContractV2.Celebrity)"
-            },
-            "t_address": {
-              "label": "address"
-            },
-            "t_struct(Celebrity)325_storage": {
-              "label": "struct CelebrityContractV2.Celebrity",
-              "members": [
-                {
-                  "label": "name",
-                  "type": "t_string_storage"
-                },
-                {
-                  "label": "price",
-                  "type": "t_uint256"
-                },
-                {
-                  "label": "responseTime",
-                  "type": "t_uint256"
-                },
-                {
-                  "label": "exists",
-                  "type": "t_bool"
-                }
-              ]
-            },
-            "t_string_storage": {
-              "label": "string"
-            },
-            "t_uint256": {
-              "label": "uint256"
-            },
-            "t_bool": {
-              "label": "bool"
             }
           },
           "layoutVersion": "1.1"
@@ -1541,7 +1194,7 @@
       },
       "AutographRequestContract": {
         "version": {
-          "withMetadata": "fb8c44d9533e0366a7e1be1e0731e179bdf247488716ada4913cf5ed5bd0b2bc",
+          "withMetadata": "6511664c42edc4ce8d340ae86382ae609a44380d6853bed608b9486b6fee334d",
           "withoutMetadata": "d109ca631ce691feda54e4ed155593a89de98c2b6a40e541eeb272eabcb7548b",
           "linkedWithoutMetadata": "d109ca631ce691feda54e4ed155593a89de98c2b6a40e541eeb272eabcb7548b"
         },
@@ -1558,7 +1211,7 @@
             {
               "contract": "AutographRequestContract",
               "label": "celebrityContract",
-              "type": "t_contract(CelebrityContract)4942",
+              "type": "t_contract(CelebrityContract)4948",
               "src": "contracts\\AutographRequestContract.sol:20"
             },
             {
@@ -1593,7 +1246,7 @@
             }
           ],
           "types": {
-            "t_contract(CelebrityContract)4942": {
+            "t_contract(CelebrityContract)4948": {
               "label": "contract CelebrityContract"
             },
             "t_contract(AutographContract)4318": {
@@ -1639,9 +1292,9 @@
       },
       "CelebrityContract": {
         "version": {
-          "withMetadata": "937b48b28e94bcf507840a2c74add56ade5df07c99cb755d06ecad7644dd84b7",
-          "withoutMetadata": "949228326c5db3ea383a4cd683975f4afa85cdecc1e2938b971e58bb5f2fcece",
-          "linkedWithoutMetadata": "949228326c5db3ea383a4cd683975f4afa85cdecc1e2938b971e58bb5f2fcece"
+          "withMetadata": "8128ecae2484191f95e96e42afac7d5b020b7a193645164dfefe47cc0dba353a",
+          "withoutMetadata": "fde06076b66ba3545d76a6d629962414bb3a3e717609da6cda4fe29ba715b22e",
+          "linkedWithoutMetadata": "fde06076b66ba3545d76a6d629962414bb3a3e717609da6cda4fe29ba715b22e"
         },
         "inherit": [
           "Initializable"
@@ -1662,6 +1315,12 @@
               "label": "totalSupply",
               "type": "t_uint256",
               "src": "contracts\\CelebrityContract.sol:22"
+            },
+            {
+              "contract": "CelebrityContract",
+              "label": "version",
+              "type": "t_uint256",
+              "src": "contracts\\CelebrityContract.sol:23"
             }
           ],
           "types": {
@@ -1673,80 +1332,6 @@
             },
             "t_struct(Celebrity)4763_storage": {
               "label": "struct CelebrityContract.Celebrity",
-              "members": [
-                {
-                  "label": "name",
-                  "type": "t_string_storage"
-                },
-                {
-                  "label": "price",
-                  "type": "t_uint256"
-                },
-                {
-                  "label": "responseTime",
-                  "type": "t_uint256"
-                },
-                {
-                  "label": "exists",
-                  "type": "t_bool"
-                }
-              ]
-            },
-            "t_string_storage": {
-              "label": "string"
-            },
-            "t_uint256": {
-              "label": "uint256"
-            },
-            "t_bool": {
-              "label": "bool"
-            }
-          },
-          "layoutVersion": "1.1"
-        }
-      },
-      "CelebrityContractV2": {
-        "version": {
-          "withMetadata": "bd0ffdda2640ca79a0d0fbc794ba8464fe6b14c6ee3f918cbcb41e0232235a1e",
-          "withoutMetadata": "1ab3f905f713cfc37fd163630249257716085ef59f6f6a26d6f6c80d9a86c553",
-          "linkedWithoutMetadata": "1ab3f905f713cfc37fd163630249257716085ef59f6f6a26d6f6c80d9a86c553"
-        },
-        "inherit": [
-          "Initializable"
-        ],
-        "libraries": [],
-        "linkReferences": [],
-        "errors": [],
-        "layout": {
-          "storage": [
-            {
-              "contract": "CelebrityContractV2",
-              "label": "celebrities",
-              "type": "t_mapping(t_address,t_struct(Celebrity)4958_storage)",
-              "src": "contracts\\CelebrityContractV2.sol:21"
-            },
-            {
-              "contract": "CelebrityContractV2",
-              "label": "totalSupply",
-              "type": "t_uint256",
-              "src": "contracts\\CelebrityContractV2.sol:22"
-            },
-            {
-              "contract": "CelebrityContractV2",
-              "label": "version",
-              "type": "t_uint256",
-              "src": "contracts\\CelebrityContractV2.sol:23"
-            }
-          ],
-          "types": {
-            "t_mapping(t_address,t_struct(Celebrity)4958_storage)": {
-              "label": "mapping(address => struct CelebrityContractV2.Celebrity)"
-            },
-            "t_address": {
-              "label": "address"
-            },
-            "t_struct(Celebrity)4958_storage": {
-              "label": "struct CelebrityContractV2.Celebrity",
               "members": [
                 {
                   "label": "name",
