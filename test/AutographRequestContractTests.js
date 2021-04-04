@@ -47,6 +47,28 @@ describe("Request Contract", function() {
 
     });
 
+    describe("Upgrade Contract", function () {
+
+        it("Should upgrade contract", async function () {
+            await celebrityContract.connect(addr1).createCelebrity(name, ethers.utils.parseEther('1'), responseTime);
+            await celebrityContract.connect(addrs[0]).createCelebrity("Vitalik Buterin", ethers.utils.parseEther('3'), 0);
+            
+            await requestsContract.connect(addr2).createRequest(addr1.address, {value: ethers.utils.parseEther('1')});
+            await requestsContract.connect(addr2).createRequest(addrs[0].address, {value: ethers.utils.parseEther('3')});
+
+            expect(await requestsContract.getBalance()).to.equal(ethers.utils.parseEther('4'));
+            expect(await requestsContract.getTotalSupply()).to.equal(2);
+
+            let AutographRequestContractV2;
+            AutographRequestContractV2 = await ethers.getContractFactory("AutographRequestContract");
+            requestsContract = await upgrades.upgradeProxy(requestsContract.address, AutographRequestContractV2);
+
+            expect(await requestsContract.getBalance()).to.equal(ethers.utils.parseEther('4'));
+            expect(await requestsContract.getTotalSupply()).to.equal(2);
+        });
+
+    });
+
     describe("Create Request", function() {
 
         it("Should create a new autograph request", async function () {

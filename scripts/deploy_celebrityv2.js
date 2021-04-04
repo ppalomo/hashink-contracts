@@ -1,19 +1,19 @@
-// scripts/prepare_upgrade.js
-async function main() {
-    const proxyAddress = '0x3D113295976bcDD9Bdb3fe75Efe635A6712da7a2';
+// // scripts/prepare_upgrade.js
+// async function main() {
+//     const proxyAddress = '0x3D113295976bcDD9Bdb3fe75Efe635A6712da7a2';
 
-    const CelebrityContract = await ethers.getContractFactory("CelebrityContractV2");
-    console.log("Preparing upgrade...");
-    const celebrityContractV2Address = await upgrades.prepareUpgrade(proxyAddress, CelebrityContract);
-    console.log("BoxV2 at:", celebrityContractV2Address);
-}
+//     const CelebrityContract = await ethers.getContractFactory("CelebrityContractV2");
+//     console.log("Preparing upgrade...");
+//     const celebrityContractV2Address = await upgrades.prepareUpgrade(proxyAddress, CelebrityContract);
+//     console.log("BoxV2 at:", celebrityContractV2Address);
+// }
 
-main()
-    .then(() => process.exit(0))
-    .catch(error => {
-        console.error(error);
-        process.exit(1);
-});
+// main()
+//     .then(() => process.exit(0))
+//     .catch(error => {
+//         console.error(error);
+//         process.exit(1);
+// });
 
 // async function main() {
 

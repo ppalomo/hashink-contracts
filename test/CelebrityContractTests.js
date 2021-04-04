@@ -42,7 +42,7 @@ describe("Celebrity Contract", function () {
             expect(await celebrityContract.getTotalSupply()).to.equal(2);
 
             let CelebrityContractV2;
-            CelebrityContractV2 = await ethers.getContractFactory("CelebrityContractV2");
+            CelebrityContractV2 = await ethers.getContractFactory("CelebrityContract");
             celebrityContract = await upgrades.upgradeProxy(celebrityContract.address, CelebrityContractV2);
 
             expect(await celebrityContract.getTotalSupply()).to.equal(2);

@@ -899,43 +899,6 @@
       "artifacts": [
         "IERC20"
       ]
-    },
-    "C:\\Work\\hashink\\hashink_contracts\\contracts\\CelebrityContractV2.sol": {
-      "lastModificationDate": 1617461845672,
-      "contentHash": "cf5805a5b51042324e071d1bf5277186",
-      "sourceName": "contracts/CelebrityContractV2.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol",
-        "hardhat/console.sol"
-      ],
-      "versionPragmas": [
-        "^0.7.0"
-      ],
-      "artifacts": [
-        "CelebrityContractV2"
-      ]
     }
   }
 }
