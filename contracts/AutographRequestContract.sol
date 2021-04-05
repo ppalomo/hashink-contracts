@@ -89,7 +89,7 @@ contract AutographRequestContract is OwnableUpgradeable {
         require(address(this).balance >= request.price, 'Balance should be greater than request price');
 
         // Minting the NFT
-        uint tokenId = autographContract.mint(request.from, metadata);
+        uint tokenId = autographContract.mint(request.from, msg.sender, metadata);
         require(autographContract.ownerOf(tokenId) == request.from, 'Token was not created correctly');
 
         // Adding request price to celeb balance
