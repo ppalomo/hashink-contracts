@@ -39,3 +39,8 @@ main()
 // AutographRequestContract address =>  0x1b011D9436011f408844E69ee3B9B5469562a747 -> 0x029c7ea5da75d1727a7b00d32302c4e58b902f0d
 
 // Cannot deploy on Goerli
+
+// ===========================================================================================================
+// CelebrityContract address =>  0xC1477a5352D5823dc37bC025EA57B59890495865 => 0xbd73d539b931af5999185ede89e79d51a6fca009
+// AutographContract address =>  0x6c6A48545ED918ec4416Fb062b442225643Aa277
+// AutographRequestContract address =>  0x3d894Fb30FD68Bb722FCB419D911a566B93C5936
