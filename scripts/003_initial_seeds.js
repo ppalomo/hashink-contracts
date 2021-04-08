@@ -16,14 +16,15 @@ async function main() {
     requestsContract = await AutographRequestContract.attach(process.env.REQUESTS_CONTRACT_ADDRESS);
 
     // Creating celebrities
-    await createCelebrity("Justin Shenkarow", ethers.utils.parseEther('0.1'), 2, process.env.CELEB_PRIVATEKEY);
+    //await createCelebrity("Justin Shenkarow", ethers.utils.parseEther('0.1'), 2, process.env.CELEB_PRIVATEKEY);
 
     // Creating requests
-    await createRequest(ethers.utils.parseEther('0.1'), process.env.USER_PRIVATEKEY, process.env.CELEB_PRIVATEKEY)
+    //await createRequest(ethers.utils.parseEther('0.1'), process.env.USER_PRIVATEKEY, process.env.CELEB_PRIVATEKEY)
 
     // Signing request
-    let metadata = "https://ipfs.io/ipfs/QmUCxDBKCrx2JXV4ZNYLwhUPXqTvRAu6Zceoh1FNVumoec";
-    await signRequest(0, metadata, process.env.CELEB_PRIVATEKEY);
+    let imageURI = "https://ipfs.io/ipfs/QmWNcYhEcggdm1TFt2m6WmGqqQwfFXudr5eFzKPtm1nYwq";
+    let metadataURI = "https://ipfs.io/ipfs/QmUCxDBKCrx2JXV4ZNYLwhUPXqTvRAu6Zceoh1FNVumoec";
+    await signRequest(0, imageURI, metadataURI, process.env.CELEB_PRIVATEKEY);
     
     // https://testnets.opensea.io/collection/hashink-autograph-token
     // https://ipfs.io/ipfs/QmUCxDBKCrx2JXV4ZNYLwhUPXqTvRAu6Zceoh1FNVumoec
@@ -51,12 +52,12 @@ async function createRequest(price, userPrivateKey, celebPrivateKey) {
     console.log(`Request created`);
 }
 
-async function signRequest(requestId, metadata, celebPrivateKey) {
+async function signRequest(requestId, imageURI, metadataURI, celebPrivateKey) {
     let celebrityWallet = new ethers.Wallet(celebPrivateKey, ethers.provider);
 
     console.log(`Signing request ${requestId}`);
 
-    await requestsContract.connect(celebrityWallet).signRequest(requestId, metadata, { gasLimit: 3000000 });
+    await requestsContract.connect(celebrityWallet).signRequest(requestId, imageURI, metadataURI, { gasLimit: 3000000 });
 
     console.log(`Request signed`);
 }

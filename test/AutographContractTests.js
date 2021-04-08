@@ -15,7 +15,8 @@ describe("Autograph Contract", function() {
     let name;
     let price;
     let responseTime;
-    let metadata;
+    let imageURI;
+    let metadataURI;
 
     beforeEach(async function () {
 
@@ -23,7 +24,8 @@ describe("Autograph Contract", function() {
         name = "Justin Shenkarow";
         price = ethers.utils.parseEther('2');
         responseTime = 2;
-        metadata="QmTgqnhFBMkfT9s8PHKcdXBn1f5bG3Q5hmBaR4U6hoTvb1";
+        imageURI = "https://ipfs.io/ipfs/QmWNcYhEcggdm1TFt2m6WmGqqQwfFXudr5eFzKPtm1nYwq";
+        metadataURI = "https://ipfs.io/ipfs/QmUCxDBKCrx2JXV4ZNYLwhUPXqTvRAu6Zceoh1FNVumoec";
     
         // Deploying celebrities contract
         CelebrityContract = await ethers.getContractFactory("CelebrityContract");
@@ -54,13 +56,15 @@ describe("Autograph Contract", function() {
             await requestsContract.connect(addr2).createRequest(addr1.address, {value: ethers.utils.parseEther('1')});
             await requestsContract.connect(addr2).createRequest(addrs[0].address, {value: ethers.utils.parseEther('3')});
 
-            await requestsContract.connect(addr1).signRequest(0, metadata);
-            await requestsContract.connect(addrs[0]).signRequest(1, metadata);
+            await requestsContract.connect(addr1).signRequest(0, imageURI, metadataURI);
+            await requestsContract.connect(addrs[0]).signRequest(1, imageURI, metadataURI);
 
             expect(await autographContract.totalSupply()).to.equal(2);
             expect(await autographContract.ownerOf(0)).to.equal(addr2.address);
             expect(await autographContract.balanceOf(addr2.address)).to.equal(2);
-            expect(await autographContract.autographs(0)).to.equal(addr1.address);
+            let token = await autographContract.autographs(0);
+            expect(token.creator).to.equal(addr1.address);
+            expect(token.imageURI).to.equal(imageURI);
 
             let AutographContractV2;
             AutographContractV2 = await ethers.getContractFactory("AutographContract");
@@ -69,7 +73,9 @@ describe("Autograph Contract", function() {
             expect(await autographContract.totalSupply()).to.equal(2);
             expect(await autographContract.ownerOf(0)).to.equal(addr2.address);
             expect(await autographContract.balanceOf(addr2.address)).to.equal(2);
-            expect(await autographContract.autographs(0)).to.equal(addr1.address);
+            token = await autographContract.autographs(0);
+            expect(token.creator).to.equal(addr1.address);
+            expect(token.imageURI).to.equal(imageURI);
         });
 
     });
@@ -81,20 +87,24 @@ describe("Autograph Contract", function() {
 
             await celebrityContract.connect(addr1).createCelebrity(name, price, responseTime);
             await requestsContract.connect(addr2).createRequest(addr1.address, {value: price});
-            await requestsContract.connect(addr1).signRequest(0, metadata);
+            
+            await expect (
+                requestsContract.connect(addr1).signRequest(0, imageURI, metadataURI)
+            ).to.emit(autographContract, 'AutographMinted');
 
             expect(await autographContract.totalSupply()).to.equal(1);
             expect(await autographContract.ownerOf(0)).to.equal(addr2.address);
             expect(await autographContract.balanceOf(addr2.address)).to.equal(1);
             
             const token = await autographContract.autographs(0);
-            expect(token).to.equal(addr1.address);
+            expect(token.creator).to.equal(addr1.address);
+            expect(token.imageURI).to.equal(imageURI);
         });
 
         it("Should return token creator", async function () {
             await celebrityContract.connect(addr1).createCelebrity(name, price, responseTime);
             await requestsContract.connect(addr2).createRequest(addr1.address, {value: price});
-            await requestsContract.connect(addr1).signRequest(0, metadata);
+            await requestsContract.connect(addr1).signRequest(0, imageURI, metadataURI);
   
             expect(await autographContract.creatorOf(0)).to.equal(addr1.address);
         });
@@ -108,7 +118,7 @@ describe("Autograph Contract", function() {
 
             await celebrityContract.connect(addr1).createCelebrity(name, price, responseTime);
             await requestsContract.connect(addr2).createRequest(addr1.address, {value: price});
-            await requestsContract.connect(addr1).signRequest(0, metadata);
+            await requestsContract.connect(addr1).signRequest(0, imageURI, metadataURI);
 
             await autographContract.connect(addr2).approve(addrs[0].address, 0);
             await autographContract.connect(addrs[0]).transferFrom(addr2.address, addrs[0].address, 0);

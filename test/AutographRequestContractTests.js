@@ -17,7 +17,8 @@ describe("Request Contract", function() {
     let name;
     let price;
     let responseTime;
-    let metadata;
+    let imageURI;
+    let metadataURI;
 
     beforeEach(async function () {
 
@@ -25,7 +26,9 @@ describe("Request Contract", function() {
         name = "Justin Shenkarow";
         price = ethers.utils.parseEther('2');
         responseTime = 2;
-        metadata="QmTgqnhFBMkfT9s8PHKcdXBn1f5bG3Q5hmBaR4U6hoTvb1";
+        imageURI=
+        imageURI = "https://ipfs.io/ipfs/QmWNcYhEcggdm1TFt2m6WmGqqQwfFXudr5eFzKPtm1nYwq";
+        metadataURI = "https://ipfs.io/ipfs/QmUCxDBKCrx2JXV4ZNYLwhUPXqTvRAu6Zceoh1FNVumoec";
     
         // Deploying celebrities contract
         CelebrityContract = await ethers.getContractFactory("CelebrityContract");
@@ -167,7 +170,7 @@ describe("Request Contract", function() {
             expect(await requestsContract.getBalance()).to.equal(price);
             expect(await requestsContract.getTotalSupply()).to.equal(1);
 
-            await requestsContract.connect(addr1).signRequest(0, metadata);
+            await requestsContract.connect(addr1).signRequest(0, imageURI, metadataURI);
             expect(await requestsContract.getBalance()).to.equal(0);
             expect(await addr1.getBalance()).to.be.above(celebBalance);
             expect(await requestsContract.getNumberOfPendingRequests()).to.equal(0);
@@ -181,7 +184,7 @@ describe("Request Contract", function() {
             await requestsContract.connect(addr2).createRequest(addr1.address, {value: price});
 
             await expect(
-                requestsContract.connect(addrs[0]).signRequest(0, metadata)
+                requestsContract.connect(addrs[0]).signRequest(0, imageURI, metadataURI)
             ).to.be.revertedWith('You are not the recipient of the request');
         });
 
@@ -193,7 +196,7 @@ describe("Request Contract", function() {
 
             await celebrityContract.connect(addr1).createCelebrity(name, price, responseTime);
             await requestsContract.connect(addr2).createRequest(addr1.address, {value: price});                
-            await requestsContract.connect(addr1).signRequest(0, metadata);
+            await requestsContract.connect(addr1).signRequest(0, imageURI, metadataURI);
             
             const expectedOwnerBalance = BigNumber(ownerBalance.toString()).plus(fee);
             const currentOwnerBalance = await owner.getBalance();
@@ -209,7 +212,7 @@ describe("Request Contract", function() {
             await requestsContract.connect(addr2).deleteRequest(0);
 
             await expect(
-                requestsContract.connect(addr1).signRequest(0, metadata)
+                requestsContract.connect(addr1).signRequest(0, imageURI, metadataURI)
             ).to.be.reverted;
         });
 

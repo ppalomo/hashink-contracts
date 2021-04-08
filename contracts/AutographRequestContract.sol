@@ -27,7 +27,7 @@ contract AutographRequestContract is OwnableUpgradeable {
     // Events
     event RequestCreated(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
     event RequestDeleted(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
-    event RequestSigned(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created, string metadata);
+    event RequestSigned(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created, string imageURI, string metadataURI);
     event FeePercentChanged(uint feePercent);
 
     /**
@@ -80,16 +80,17 @@ contract AutographRequestContract is OwnableUpgradeable {
     /**
      @notice Method used to sign a pending request.
      @param id - Request index.
-     @param metadata - Autograph metadata.
+     @param imageURI - Autograph image URI.
+     @param metadataURI - Autograph metadata URI.
      */
-    function signRequest(uint id, string memory metadata) public {
+    function signRequest(uint id, string memory imageURI, string memory metadataURI) public {
         Request memory request = requests[id];
 
         require(request.to == msg.sender, 'You are not the recipient of the request');
         require(address(this).balance >= request.price, 'Balance should be greater than request price');
 
         // Minting the NFT
-        uint tokenId = autographContract.mint(request.from, msg.sender, metadata);
+        uint tokenId = autographContract.mint(request.from, msg.sender, imageURI, metadataURI);
         require(autographContract.ownerOf(tokenId) == request.from, 'Token was not created correctly');
 
         // Adding request price to celeb balance
@@ -107,7 +108,7 @@ contract AutographRequestContract is OwnableUpgradeable {
         delete requests[id];
         numberOfPendingRequests -= 1;
 
-        emit RequestSigned(id, request.from, request.to, request.price, request.responseTime, request.created, metadata);
+        emit RequestSigned(id, request.from, request.to, request.price, request.responseTime, request.created, imageURI, metadataURI);
     }
 
     /**

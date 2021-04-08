@@ -9,6 +9,7 @@ contract AutographContract is ERC721Upgradeable {
     // Structs
     struct Autograph {
         address creator;
+        string imageURI;
     }
 
     // Variables
@@ -16,7 +17,7 @@ contract AutographContract is ERC721Upgradeable {
     uint public version;
 
     // Events
-    event ReceivedRoyalties(address indexed _royaltyRecipient, address indexed _buyer, uint256 indexed _tokenId, address _tokenPaid, uint256 _amount);
+    event AutographMinted(uint id, address indexed creator, address indexed owner, string imageURI, string metadataURI);
 
     /**
      @notice Contract initializer.
@@ -30,18 +31,19 @@ contract AutographContract is ERC721Upgradeable {
      @notice Function used to mint a new NFT.
      @param to - Person's wallet address who will receive the NFT.
      @param from - Person who's minting the NFT (creator).
-     @param tokenURI - Link to an image referencing the asset. Might include the asset name, a link to an image referencing the asset, or anything you want.
+     @param metadataURI - Link to an image referencing the asset. Might include the asset name, a link to an image referencing the asset, or anything you want.
      */
-    function mint(address to, address from, string memory tokenURI) public returns (uint) {
+    function mint(address to, address from, string memory imageURI, string memory metadataURI) public returns (uint) {
         uint newId = autographs.length;
 
         autographs.push(
-            Autograph(from)
+            Autograph(from, imageURI)
         );
 
         _safeMint(to, newId);
-        _setTokenURI(newId, tokenURI);
+        _setTokenURI(newId, metadataURI);
 
+        emit AutographMinted(newId, from, to, imageURI, metadataURI);
         return newId;
     }
 

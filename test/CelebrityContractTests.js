@@ -158,3 +158,6 @@ describe("Celebrity Contract", function () {
     });
 
 });
+
+// Pending:
+// Check values on creation (name, price, etc.)
