@@ -136,6 +136,15 @@ contract AutographRequestContract is OwnableUpgradeable {
     }
 
     /**
+     @notice Method used know if the locking period has expired.
+     @param id - Request index.
+     */
+    function requestIsLocked(uint id) public view returns (bool) {
+        Request memory request = requests[id];
+        return block.timestamp < request.created + (request.responseTime * 1 days);
+    }
+
+    /**
      @notice Sets fees percent.
      @param _feePercent - New fee percent.
      */

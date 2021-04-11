@@ -157,6 +157,18 @@ describe("Request Contract", function() {
             expect(await addr2.getBalance()).to.be.above(userBalance);
         });
 
+        it("Should return if a request is locked or not", async function () {
+            await celebrityContract.connect(addr1).createCelebrity(name, price, 0);
+            await requestsContract.connect(addr2).createRequest(addr1.address, {value: price});
+            
+            expect(await requestsContract.requestIsLocked(0)).to.equal(false);
+
+            await celebrityContract.connect(addrs[0]).createCelebrity(name, price, 2);
+            await requestsContract.connect(addr2).createRequest(addrs[0].address, {value: price});
+
+            expect(await requestsContract.requestIsLocked(1)).to.equal(true);
+        });
+
     });
 
     describe("Sign Request", function() {

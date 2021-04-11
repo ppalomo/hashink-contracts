@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "D:\\Work\\hashink\\hashink-contracts\\contracts\\AutographContract.sol": {
-      "lastModificationDate": 1617889282696,
-      "contentHash": "d8ec0f6598702265f3131b1900242032",
+      "lastModificationDate": 1617894031126,
+      "contentHash": "d921e54a4996c8ef793174572c0db987",
       "sourceName": "contracts/AutographContract.sol",
       "solcConfig": {
         "version": "0.7.0",
@@ -575,8 +575,8 @@
       ]
     },
     "D:\\Work\\hashink\\hashink-contracts\\contracts\\AutographRequestContract.sol": {
-      "lastModificationDate": 1617889236648,
-      "contentHash": "70d0d40187330fe9b3ce9b2ee29f49d6",
+      "lastModificationDate": 1618135299854,
+      "contentHash": "8fa58c6b0a17254ac80a056158a30cd6",
       "sourceName": "contracts/AutographRequestContract.sol",
       "solcConfig": {
         "version": "0.7.0",

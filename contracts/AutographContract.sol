@@ -31,7 +31,8 @@ contract AutographContract is ERC721Upgradeable {
      @notice Function used to mint a new NFT.
      @param to - Person's wallet address who will receive the NFT.
      @param from - Person who's minting the NFT (creator).
-     @param metadataURI - Link to an image referencing the asset. Might include the asset name, a link to an image referencing the asset, or anything you want.
+     @param imageURI - Link to an image referencing the asset.
+     @param metadataURI - Link to metadata.
      */
     function mint(address to, address from, string memory imageURI, string memory metadataURI) public returns (uint) {
         uint newId = autographs.length;

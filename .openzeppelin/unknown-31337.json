@@ -21,7 +21,7 @@
           {
             "contract": "CelebrityContract",
             "label": "celebrities",
-            "type": "t_mapping(t_address,t_struct(Celebrity)3793_storage)",
+            "type": "t_mapping(t_address,t_struct(Celebrity)3820_storage)",
             "src": "contracts\\CelebrityContract.sol:21"
           },
           {
@@ -38,13 +38,13 @@
           }
         ],
         "types": {
-          "t_mapping(t_address,t_struct(Celebrity)3793_storage)": {
+          "t_mapping(t_address,t_struct(Celebrity)3820_storage)": {
             "label": "mapping(address => struct CelebrityContract.Celebrity)"
           },
           "t_address": {
             "label": "address"
           },
-          "t_struct(Celebrity)3793_storage": {
+          "t_struct(Celebrity)3820_storage": {
             "label": "struct CelebrityContract.Celebrity",
             "members": [
               {
@@ -155,7 +155,7 @@
     },
     "9ea64edfd352e928be94a9a798c8684a93f938987f8becb66f1a8420cd5f9527": {
       "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-      "txHash": "0x5dcf3b0a1e3620a2bbb2925b3bb582c26fd6ea2a6a6a1338f560fa6681566b6c",
+      "txHash": "0x0c72cdc8da144aa58ea3b4f02a0e847ece46ce3605ba3925e8be033d3680cdad",
       "layout": {
         "storage": [
           {
@@ -386,9 +386,9 @@
         }
       }
     },
-    "3960dbc43e7f02d6b0d9f7b5cafc1cd6aedcbc3c572ade6155e1d60a04bb36eb": {
+    "9cdd312c9b644ea1218b8d63d3ce7451c3c4caa65237b672e7865bf88451526b": {
       "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
-      "txHash": "0xbc8e039dc403ddd6f0ea222cfa16b5ee30a43709d990c423580565b06b4aa2a2",
+      "txHash": "0x9f894ffe8fa3c62f06406756f05128f81cbf2e2c73655f91877977bdd4852375",
       "layout": {
         "storage": [
           {
@@ -424,7 +424,7 @@
           {
             "contract": "AutographRequestContract",
             "label": "celebrityContract",
-            "type": "t_contract(CelebrityContract)3978",
+            "type": "t_contract(CelebrityContract)4005",
             "src": "contracts\\AutographRequestContract.sol:20"
           },
           {
@@ -459,7 +459,7 @@
           }
         ],
         "types": {
-          "t_contract(CelebrityContract)3978": {
+          "t_contract(CelebrityContract)4005": {
             "label": "contract CelebrityContract"
           },
           "t_contract(AutographContract)3340": {
