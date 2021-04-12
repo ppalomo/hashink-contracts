@@ -1,82 +1,6 @@
 {
   "manifestVersion": "3.1",
   "impls": {
-    "fde06076b66ba3545d76a6d629962414bb3a3e717609da6cda4fe29ba715b22e": {
-      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-      "txHash": "0x338694b72598d0e874be01c6f9bbcc57a8acc02a1514bfec32f7f8b1537ca3a2",
-      "layout": {
-        "storage": [
-          {
-            "contract": "Initializable",
-            "label": "_initialized",
-            "type": "t_bool",
-            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:25"
-          },
-          {
-            "contract": "Initializable",
-            "label": "_initializing",
-            "type": "t_bool",
-            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:30"
-          },
-          {
-            "contract": "CelebrityContract",
-            "label": "celebrities",
-            "type": "t_mapping(t_address,t_struct(Celebrity)3820_storage)",
-            "src": "contracts\\CelebrityContract.sol:21"
-          },
-          {
-            "contract": "CelebrityContract",
-            "label": "totalSupply",
-            "type": "t_uint256",
-            "src": "contracts\\CelebrityContract.sol:22"
-          },
-          {
-            "contract": "CelebrityContract",
-            "label": "version",
-            "type": "t_uint256",
-            "src": "contracts\\CelebrityContract.sol:23"
-          }
-        ],
-        "types": {
-          "t_mapping(t_address,t_struct(Celebrity)3820_storage)": {
-            "label": "mapping(address => struct CelebrityContract.Celebrity)"
-          },
-          "t_address": {
-            "label": "address"
-          },
-          "t_struct(Celebrity)3820_storage": {
-            "label": "struct CelebrityContract.Celebrity",
-            "members": [
-              {
-                "label": "name",
-                "type": "t_string_storage"
-              },
-              {
-                "label": "price",
-                "type": "t_uint256"
-              },
-              {
-                "label": "responseTime",
-                "type": "t_uint256"
-              },
-              {
-                "label": "exists",
-                "type": "t_bool"
-              }
-            ]
-          },
-          "t_string_storage": {
-            "label": "string"
-          },
-          "t_uint256": {
-            "label": "uint256"
-          },
-          "t_bool": {
-            "label": "bool"
-          }
-        }
-      }
-    },
     "1ab3f905f713cfc37fd163630249257716085ef59f6f6a26d6f6c80d9a86c553": {
       "address": "0x5f3f1dBD7B74C6B46e8c44f98792A1dAf8d69154",
       "txHash": "0x911323188ad08cdfbb300bfc9cbdfcaf3a13054207bb0958327a8d64ade589d0",
@@ -153,9 +77,134 @@
         }
       }
     },
+    "9cdd312c9b644ea1218b8d63d3ce7451c3c4caa65237b672e7865bf88451526b": {
+      "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+      "txHash": "0x9f894ffe8fa3c62f06406756f05128f81cbf2e2c73655f91877977bdd4852375",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:25"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:30"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:20"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
+          },
+          {
+            "contract": "AutographRequestContract",
+            "label": "celebrityContract",
+            "type": "t_contract(CelebrityContract)4964",
+            "src": "contracts\\AutographRequestContract.sol:20"
+          },
+          {
+            "contract": "AutographRequestContract",
+            "label": "autographContract",
+            "type": "t_contract(AutographContract)4299",
+            "src": "contracts\\AutographRequestContract.sol:21"
+          },
+          {
+            "contract": "AutographRequestContract",
+            "label": "requests",
+            "type": "t_array(t_struct(Request)4317_storage)dyn_storage",
+            "src": "contracts\\AutographRequestContract.sol:22"
+          },
+          {
+            "contract": "AutographRequestContract",
+            "label": "numberOfPendingRequests",
+            "type": "t_uint256",
+            "src": "contracts\\AutographRequestContract.sol:23"
+          },
+          {
+            "contract": "AutographRequestContract",
+            "label": "feePercent",
+            "type": "t_uint256",
+            "src": "contracts\\AutographRequestContract.sol:24"
+          },
+          {
+            "contract": "AutographRequestContract",
+            "label": "version",
+            "type": "t_uint256",
+            "src": "contracts\\AutographRequestContract.sol:25"
+          }
+        ],
+        "types": {
+          "t_contract(CelebrityContract)4964": {
+            "label": "contract CelebrityContract"
+          },
+          "t_contract(AutographContract)4299": {
+            "label": "contract AutographContract"
+          },
+          "t_array(t_struct(Request)4317_storage)dyn_storage": {
+            "label": "struct AutographRequestContract.Request[]"
+          },
+          "t_struct(Request)4317_storage": {
+            "label": "struct AutographRequestContract.Request",
+            "members": [
+              {
+                "label": "from",
+                "type": "t_address"
+              },
+              {
+                "label": "to",
+                "type": "t_address"
+              },
+              {
+                "label": "price",
+                "type": "t_uint256"
+              },
+              {
+                "label": "responseTime",
+                "type": "t_uint256"
+              },
+              {
+                "label": "created",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_bool": {
+            "label": "bool"
+          }
+        }
+      }
+    },
     "9ea64edfd352e928be94a9a798c8684a93f938987f8becb66f1a8420cd5f9527": {
-      "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-      "txHash": "0x0c72cdc8da144aa58ea3b4f02a0e847ece46ce3605ba3925e8be033d3680cdad",
+      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "txHash": "0xd7a76e8aa3e4979cd2e29e0f6498fcbd6c25ce18d6b4e680cc59694d4f2ef40f",
       "layout": {
         "storage": [
           {
@@ -245,7 +294,7 @@
           {
             "contract": "AutographContract",
             "label": "autographs",
-            "type": "t_array(t_struct(Autograph)3243_storage)dyn_storage",
+            "type": "t_array(t_struct(Autograph)4202_storage)dyn_storage",
             "src": "contracts\\AutographContract.sol:16"
           },
           {
@@ -256,10 +305,10 @@
           }
         ],
         "types": {
-          "t_array(t_struct(Autograph)3243_storage)dyn_storage": {
+          "t_array(t_struct(Autograph)4202_storage)dyn_storage": {
             "label": "struct AutographContract.Autograph[]"
           },
-          "t_struct(Autograph)3243_storage": {
+          "t_struct(Autograph)4202_storage": {
             "label": "struct AutographContract.Autograph",
             "members": [
               {
@@ -386,9 +435,9 @@
         }
       }
     },
-    "9cdd312c9b644ea1218b8d63d3ce7451c3c4caa65237b672e7865bf88451526b": {
-      "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
-      "txHash": "0x9f894ffe8fa3c62f06406756f05128f81cbf2e2c73655f91877977bdd4852375",
+    "763342db5e2488093989aa76e84e3832ea01295a82f56c8d98b5e3be449ef13a": {
+      "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "txHash": "0x165a0d69ce8272455ba966a777820c67f5201a45cc30bad88b2a68fef100aef1",
       "layout": {
         "storage": [
           {
@@ -422,54 +471,51 @@
             "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
           },
           {
-            "contract": "AutographRequestContract",
-            "label": "celebrityContract",
-            "type": "t_contract(CelebrityContract)4005",
-            "src": "contracts\\AutographRequestContract.sol:20"
-          },
-          {
-            "contract": "AutographRequestContract",
+            "contract": "RequestContract",
             "label": "autographContract",
-            "type": "t_contract(AutographContract)3340",
-            "src": "contracts\\AutographRequestContract.sol:21"
+            "type": "t_contract(AutographContract)4299",
+            "src": "contracts\\RequestContract.sol:19"
           },
           {
-            "contract": "AutographRequestContract",
+            "contract": "RequestContract",
             "label": "requests",
-            "type": "t_array(t_struct(Request)3358_storage)dyn_storage",
-            "src": "contracts\\AutographRequestContract.sol:22"
+            "type": "t_array(t_struct(Request)4332_storage)dyn_storage",
+            "src": "contracts\\RequestContract.sol:20"
           },
           {
-            "contract": "AutographRequestContract",
+            "contract": "RequestContract",
+            "label": "requesterBalance",
+            "type": "t_mapping(t_address,t_uint256)",
+            "src": "contracts\\RequestContract.sol:21"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "vipBalance",
+            "type": "t_mapping(t_address,t_uint256)",
+            "src": "contracts\\RequestContract.sol:22"
+          },
+          {
+            "contract": "RequestContract",
             "label": "numberOfPendingRequests",
             "type": "t_uint256",
-            "src": "contracts\\AutographRequestContract.sol:23"
+            "src": "contracts\\RequestContract.sol:23"
           },
           {
-            "contract": "AutographRequestContract",
+            "contract": "RequestContract",
             "label": "feePercent",
             "type": "t_uint256",
-            "src": "contracts\\AutographRequestContract.sol:24"
-          },
-          {
-            "contract": "AutographRequestContract",
-            "label": "version",
-            "type": "t_uint256",
-            "src": "contracts\\AutographRequestContract.sol:25"
+            "src": "contracts\\RequestContract.sol:24"
           }
         ],
         "types": {
-          "t_contract(CelebrityContract)4005": {
-            "label": "contract CelebrityContract"
-          },
-          "t_contract(AutographContract)3340": {
+          "t_contract(AutographContract)4299": {
             "label": "contract AutographContract"
           },
-          "t_array(t_struct(Request)3358_storage)dyn_storage": {
-            "label": "struct AutographRequestContract.Request[]"
+          "t_array(t_struct(Request)4332_storage)dyn_storage": {
+            "label": "struct RequestContract.Request[]"
           },
-          "t_struct(Request)3358_storage": {
-            "label": "struct AutographRequestContract.Request",
+          "t_struct(Request)4332_storage": {
+            "label": "struct RequestContract.Request",
             "members": [
               {
                 "label": "from",
@@ -498,6 +544,9 @@
           },
           "t_uint256": {
             "label": "uint256"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
           },
           "t_array(t_uint256)49_storage": {
             "label": "uint256[49]"
