@@ -137,14 +137,6 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
-     @notice Gets number of pending requests.
-     @return Current number of pending requests.
-     */
-    // function getNumberOfPendingRequests() public view returns (uint) {
-    //     return numberOfPendingRequests;
-    // }
-
-    /**
      @notice Method used know if the locking period has expired.
      @param id - Request index.
      */

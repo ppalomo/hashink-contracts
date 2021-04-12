@@ -14,7 +14,6 @@ describe("Requests Contract", function() {
     let addr1;
     let addr2;
     let addrs;
-    let name;
     let price;
     let responseTime;
     let imageURI;
