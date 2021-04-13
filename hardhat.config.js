@@ -18,10 +18,18 @@ module.exports = {
       url: `https://ropsten.infura.io/v3/${process.env.INFURA_API_KEY}`,
       accounts: [`0x${process.env.ROPSTEN_PRIVATE_KEY}`]
     },
-    matic: { //8001
+    mumbai: { //80001
       url: "https://rpc-mumbai.maticvigil.com",
-      accounts: [`0x${process.env.MATIC_PRIVATE_KEY}`]
-    }
+      accounts: [`0x${process.env.MUMBAI_PRIVATE_KEY}`]
+    },
+    // matic: { //137
+    //   url: "https://rpc-mumbai.maticvigil.com",
+    //   accounts: [`0x${process.env.MATIC_PRIVATE_KEY}`]
+    // },
+    // xdai: { //100
+    //   url: "https://rpc-mumbai.maticvigil.com",
+    //   accounts: [`0x${process.env.MATIC_PRIVATE_KEY}`]
+    // }
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY
