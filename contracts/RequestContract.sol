@@ -2,6 +2,7 @@
 pragma solidity ^0.7.0;
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 import "./AutographContract.sol";
 
 contract RequestContract is OwnableUpgradeable {
@@ -23,6 +24,8 @@ contract RequestContract is OwnableUpgradeable {
     uint public numberOfPendingRequests;
     uint public feePercent;
 
+    IERC20Upgradeable public token;
+
     // Events
     event RequestCreated(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
     event RequestDeleted(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
@@ -33,10 +36,17 @@ contract RequestContract is OwnableUpgradeable {
      @notice Contract initializer.
      @param _autographContract - NFT Token address.
      */
-    function initialize(address _autographContract) public initializer {
+    function initialize(address _autographContract, address _tokenContract) public initializer {
         __Ownable_init();
+
+        // Initializing autograph's contract
         autographContract = AutographContract(_autographContract);
+        
+        // Default fee percent
         feePercent = 10; // %
+
+        // Token initialization
+        token = IERC20Upgradeable(_tokenContract);
     }
 
     /**
@@ -44,21 +54,25 @@ contract RequestContract is OwnableUpgradeable {
      @param to - VIP address or recipient.
      @param responseTime - VIP response time.
      */
-    function createRequest(address to, uint responseTime) public payable {
-        require(to != address(0), 'A valid address is required');
-        require(msg.value > 0, 'Sent amount must be greater than 0');
+    function createRequest(address to, uint price, uint responseTime) public {
 
-        // Creating request
-        Request memory newRequest = Request(msg.sender, to, msg.value, responseTime, block.timestamp);
-        requests.push(newRequest);
-        uint id = requests.length - 1;
-        numberOfPendingRequests += 1;
+        bool sent = token.transferFrom(msg.sender, address(this), price);
+        require(sent, "Token transfer failed");
 
-        // Updating balances
-        requesterBalance[msg.sender] += msg.value;
-        vipBalance[to] += msg.value;
+        // require(to != address(0), 'A valid address is required');
+        // require(msg.value > 0, 'Sent amount must be greater than 0');
 
-        emit RequestCreated(id, newRequest.from, newRequest.to, newRequest.price, newRequest.responseTime, newRequest.created);
+        // // Creating request
+        // Request memory newRequest = Request(msg.sender, to, msg.value, responseTime, block.timestamp);
+        // requests.push(newRequest);
+        // uint id = requests.length - 1;
+        // numberOfPendingRequests += 1;
+
+        // // Updating balances
+        // requesterBalance[msg.sender] += msg.value;
+        // vipBalance[to] += msg.value;
+
+        // emit RequestCreated(id, newRequest.from, newRequest.to, newRequest.price, newRequest.responseTime, newRequest.created);
     }
 
     /**

@@ -14,7 +14,6 @@ contract AutographContract is ERC721Upgradeable {
 
     // Variables
     Autograph[] public autographs;
-    uint public version;
 
     // Events
     event AutographMinted(uint id, address indexed creator, address indexed owner, string imageURI, string metadataURI);
@@ -24,7 +23,6 @@ contract AutographContract is ERC721Upgradeable {
      */
     function initialize() initializer public {
         __ERC721_init("Hashink Autograph Token", "SIGN");
-        version = 1;
     }
 
     /** 

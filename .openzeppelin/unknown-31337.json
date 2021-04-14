@@ -77,9 +77,9 @@
         }
       }
     },
-    "9cdd312c9b644ea1218b8d63d3ce7451c3c4caa65237b672e7865bf88451526b": {
-      "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
-      "txHash": "0x9f894ffe8fa3c62f06406756f05128f81cbf2e2c73655f91877977bdd4852375",
+    "e2e9da2e9f484aa26e9c41ae60a64b955072fe2470558edc3f46eee08faa1a53": {
+      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "txHash": "0xd2825a9949322987e21138b4bde5797a6f9e9c5f288087595462fcc2f97bc9fc",
       "layout": {
         "storage": [
           {
@@ -101,88 +101,51 @@
             "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:31"
           },
           {
-            "contract": "OwnableUpgradeable",
-            "label": "_owner",
-            "type": "t_address",
-            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:20"
+            "contract": "ERC20Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_address,t_uint256)",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:37"
           },
           {
-            "contract": "OwnableUpgradeable",
+            "contract": "ERC20Upgradeable",
+            "label": "_allowances",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:39"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_totalSupply",
+            "type": "t_uint256",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:41"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_name",
+            "type": "t_string_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:43"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_symbol",
+            "type": "t_string_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:44"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_decimals",
+            "type": "t_uint8",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:45"
+          },
+          {
+            "contract": "ERC20Upgradeable",
             "label": "__gap",
-            "type": "t_array(t_uint256)49_storage",
-            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
-          },
-          {
-            "contract": "AutographRequestContract",
-            "label": "celebrityContract",
-            "type": "t_contract(CelebrityContract)4964",
-            "src": "contracts\\AutographRequestContract.sol:20"
-          },
-          {
-            "contract": "AutographRequestContract",
-            "label": "autographContract",
-            "type": "t_contract(AutographContract)4299",
-            "src": "contracts\\AutographRequestContract.sol:21"
-          },
-          {
-            "contract": "AutographRequestContract",
-            "label": "requests",
-            "type": "t_array(t_struct(Request)4317_storage)dyn_storage",
-            "src": "contracts\\AutographRequestContract.sol:22"
-          },
-          {
-            "contract": "AutographRequestContract",
-            "label": "numberOfPendingRequests",
-            "type": "t_uint256",
-            "src": "contracts\\AutographRequestContract.sol:23"
-          },
-          {
-            "contract": "AutographRequestContract",
-            "label": "feePercent",
-            "type": "t_uint256",
-            "src": "contracts\\AutographRequestContract.sol:24"
-          },
-          {
-            "contract": "AutographRequestContract",
-            "label": "version",
-            "type": "t_uint256",
-            "src": "contracts\\AutographRequestContract.sol:25"
+            "type": "t_array(t_uint256)44_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:312"
           }
         ],
         "types": {
-          "t_contract(CelebrityContract)4964": {
-            "label": "contract CelebrityContract"
-          },
-          "t_contract(AutographContract)4299": {
-            "label": "contract AutographContract"
-          },
-          "t_array(t_struct(Request)4317_storage)dyn_storage": {
-            "label": "struct AutographRequestContract.Request[]"
-          },
-          "t_struct(Request)4317_storage": {
-            "label": "struct AutographRequestContract.Request",
-            "members": [
-              {
-                "label": "from",
-                "type": "t_address"
-              },
-              {
-                "label": "to",
-                "type": "t_address"
-              },
-              {
-                "label": "price",
-                "type": "t_uint256"
-              },
-              {
-                "label": "responseTime",
-                "type": "t_uint256"
-              },
-              {
-                "label": "created",
-                "type": "t_uint256"
-              }
-            ]
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
           },
           "t_address": {
             "label": "address"
@@ -190,8 +153,17 @@
           "t_uint256": {
             "label": "uint256"
           },
-          "t_array(t_uint256)49_storage": {
-            "label": "uint256[49]"
+          "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(address => mapping(address => uint256))"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_uint8": {
+            "label": "uint8"
+          },
+          "t_array(t_uint256)44_storage": {
+            "label": "uint256[44]"
           },
           "t_array(t_uint256)50_storage": {
             "label": "uint256[50]"
@@ -202,9 +174,9 @@
         }
       }
     },
-    "9ea64edfd352e928be94a9a798c8684a93f938987f8becb66f1a8420cd5f9527": {
-      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-      "txHash": "0xd7a76e8aa3e4979cd2e29e0f6498fcbd6c25ce18d6b4e680cc59694d4f2ef40f",
+    "56a6ef30952e88d0624e86e00191b8d1cca72232331630cdf9bed5011693edde": {
+      "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "txHash": "0x19465f967705d61a8259f10b96da2c3d951e62e7718800941d22e296033e4bba",
       "layout": {
         "storage": [
           {
@@ -240,13 +212,13 @@
           {
             "contract": "ERC721Upgradeable",
             "label": "_holderTokens",
-            "type": "t_mapping(t_address,t_struct(UintSet)3050_storage)",
+            "type": "t_mapping(t_address,t_struct(UintSet)3658_storage)",
             "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC721\\ERC721Upgradeable.sol:34"
           },
           {
             "contract": "ERC721Upgradeable",
             "label": "_tokenOwners",
-            "type": "t_struct(UintToAddressMap)2427_storage",
+            "type": "t_struct(UintToAddressMap)3035_storage",
             "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC721\\ERC721Upgradeable.sol:37"
           },
           {
@@ -294,21 +266,15 @@
           {
             "contract": "AutographContract",
             "label": "autographs",
-            "type": "t_array(t_struct(Autograph)3243_storage)dyn_storage",
+            "type": "t_array(t_struct(Autograph)3851_storage)dyn_storage",
             "src": "contracts\\AutographContract.sol:16"
-          },
-          {
-            "contract": "AutographContract",
-            "label": "version",
-            "type": "t_uint256",
-            "src": "contracts\\AutographContract.sol:17"
           }
         ],
         "types": {
-          "t_array(t_struct(Autograph)3243_storage)dyn_storage": {
+          "t_array(t_struct(Autograph)3851_storage)dyn_storage": {
             "label": "struct AutographContract.Autograph[]"
           },
-          "t_struct(Autograph)3243_storage": {
+          "t_struct(Autograph)3851_storage": {
             "label": "struct AutographContract.Autograph",
             "members": [
               {
@@ -327,22 +293,19 @@
           "t_string_storage": {
             "label": "string"
           },
-          "t_uint256": {
-            "label": "uint256"
-          },
-          "t_mapping(t_address,t_struct(UintSet)3050_storage)": {
+          "t_mapping(t_address,t_struct(UintSet)3658_storage)": {
             "label": "mapping(address => struct EnumerableSetUpgradeable.UintSet)"
           },
-          "t_struct(UintSet)3050_storage": {
+          "t_struct(UintSet)3658_storage": {
             "label": "struct EnumerableSetUpgradeable.UintSet",
             "members": [
               {
                 "label": "_inner",
-                "type": "t_struct(Set)2664_storage"
+                "type": "t_struct(Set)3272_storage"
               }
             ]
           },
-          "t_struct(Set)2664_storage": {
+          "t_struct(Set)3272_storage": {
             "label": "struct EnumerableSetUpgradeable.Set",
             "members": [
               {
@@ -364,21 +327,24 @@
           "t_mapping(t_bytes32,t_uint256)": {
             "label": "mapping(bytes32 => uint256)"
           },
-          "t_struct(UintToAddressMap)2427_storage": {
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_struct(UintToAddressMap)3035_storage": {
             "label": "struct EnumerableMapUpgradeable.UintToAddressMap",
             "members": [
               {
                 "label": "_inner",
-                "type": "t_struct(Map)2109_storage"
+                "type": "t_struct(Map)2717_storage"
               }
             ]
           },
-          "t_struct(Map)2109_storage": {
+          "t_struct(Map)2717_storage": {
             "label": "struct EnumerableMapUpgradeable.Map",
             "members": [
               {
                 "label": "_entries",
-                "type": "t_array(t_struct(MapEntry)2101_storage)dyn_storage"
+                "type": "t_array(t_struct(MapEntry)2709_storage)dyn_storage"
               },
               {
                 "label": "_indexes",
@@ -386,10 +352,10 @@
               }
             ]
           },
-          "t_array(t_struct(MapEntry)2101_storage)dyn_storage": {
+          "t_array(t_struct(MapEntry)2709_storage)dyn_storage": {
             "label": "struct EnumerableMapUpgradeable.MapEntry[]"
           },
-          "t_struct(MapEntry)2101_storage": {
+          "t_struct(MapEntry)2709_storage": {
             "label": "struct EnumerableMapUpgradeable.MapEntry",
             "members": [
               {
@@ -435,9 +401,9 @@
         }
       }
     },
-    "de64417e13f19809abe20233c3db9d070d95980cd3d26da159621b27aa508666": {
-      "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-      "txHash": "0x85762f60d03d69d9dcf93ecc9557b68cda9bd3529980f0bc13dbfd44e7f426a8",
+    "71d3bbcc5c736f73deb3954669362ca7c7aec34903f2e7fd7a0d8a8b50c59009": {
+      "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      "txHash": "0xc99680221ee8a206a65d4d1eae55b14cc4c5918f4f811b7a7199d29f453ef98a",
       "layout": {
         "storage": [
           {
@@ -473,48 +439,54 @@
           {
             "contract": "RequestContract",
             "label": "autographContract",
-            "type": "t_contract(AutographContract)3340",
-            "src": "contracts\\RequestContract.sol:19"
+            "type": "t_contract(AutographContract)3942",
+            "src": "contracts\\RequestContract.sol:20"
           },
           {
             "contract": "RequestContract",
             "label": "requests",
-            "type": "t_array(t_struct(Request)3357_storage)dyn_storage",
-            "src": "contracts\\RequestContract.sol:20"
+            "type": "t_array(t_struct(Request)3960_storage)dyn_storage",
+            "src": "contracts\\RequestContract.sol:21"
           },
           {
             "contract": "RequestContract",
             "label": "requesterBalance",
             "type": "t_mapping(t_address,t_uint256)",
-            "src": "contracts\\RequestContract.sol:21"
+            "src": "contracts\\RequestContract.sol:22"
           },
           {
             "contract": "RequestContract",
             "label": "vipBalance",
             "type": "t_mapping(t_address,t_uint256)",
-            "src": "contracts\\RequestContract.sol:22"
+            "src": "contracts\\RequestContract.sol:23"
           },
           {
             "contract": "RequestContract",
             "label": "numberOfPendingRequests",
             "type": "t_uint256",
-            "src": "contracts\\RequestContract.sol:23"
+            "src": "contracts\\RequestContract.sol:24"
           },
           {
             "contract": "RequestContract",
             "label": "feePercent",
             "type": "t_uint256",
-            "src": "contracts\\RequestContract.sol:24"
+            "src": "contracts\\RequestContract.sol:25"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "token",
+            "type": "t_contract(IERC20Upgradeable)1246",
+            "src": "contracts\\RequestContract.sol:27"
           }
         ],
         "types": {
-          "t_contract(AutographContract)3340": {
+          "t_contract(AutographContract)3942": {
             "label": "contract AutographContract"
           },
-          "t_array(t_struct(Request)3357_storage)dyn_storage": {
+          "t_array(t_struct(Request)3960_storage)dyn_storage": {
             "label": "struct RequestContract.Request[]"
           },
-          "t_struct(Request)3357_storage": {
+          "t_struct(Request)3960_storage": {
             "label": "struct RequestContract.Request",
             "members": [
               {
@@ -548,6 +520,9 @@
           "t_mapping(t_address,t_uint256)": {
             "label": "mapping(address => uint256)"
           },
+          "t_contract(IERC20Upgradeable)1246": {
+            "label": "contract IERC20Upgradeable"
+          },
           "t_array(t_uint256)49_storage": {
             "label": "uint256[49]"
           },
@@ -562,7 +537,7 @@
     }
   },
   "admin": {
-    "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
-    "txHash": "0x52c9be0ab70f72512f49bb48732a9065e7375148954544397ec32cd4022ff196"
+    "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+    "txHash": "0x4015f10833edcc7d9366ac30bedc2ffb8cc5a7bf9e1cbca6fa51bdd2e4f95684"
   }
 }

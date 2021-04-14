@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Work\\hashink\\hashink_contracts\\contracts\\AutographContract.sol": {
-      "lastModificationDate": 1618217794320,
-      "contentHash": "d921e54a4996c8ef793174572c0db987",
+      "lastModificationDate": 1618412135605,
+      "contentHash": "2499d9a616bf3118266a270df7e58e50",
       "sourceName": "contracts/AutographContract.sol",
       "solcConfig": {
         "version": "0.7.0",
@@ -575,8 +575,8 @@
       ]
     },
     "C:\\Work\\hashink\\hashink_contracts\\contracts\\RequestContract.sol": {
-      "lastModificationDate": 1618396182150,
-      "contentHash": "8e2d0f55ca1330a4e7ffe2b2e426cd08",
+      "lastModificationDate": 1618410024132,
+      "contentHash": "c9cf4753c0a627b45f40b6f67678aabd",
       "sourceName": "contracts/RequestContract.sol",
       "solcConfig": {
         "version": "0.7.0",
@@ -602,6 +602,7 @@
       },
       "imports": [
         "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
         "./AutographContract.sol"
       ],
       "versionPragmas": [
@@ -646,43 +647,6 @@
       ],
       "artifacts": [
         "OwnableUpgradeable"
-      ]
-    },
-    "C:\\Work\\hashink\\hashink_contracts\\contracts\\HashinkToken.sol": {
-      "lastModificationDate": 1617391976342,
-      "contentHash": "327c779e388b430eb17e5c2ef1f67991",
-      "sourceName": "contracts/HashinkToken.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "hardhat/console.sol"
-      ],
-      "versionPragmas": [
-        "^0.7.0"
-      ],
-      "artifacts": [
-        "HashinkToken"
       ]
     },
     "C:\\Work\\hashink\\hashink_contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
@@ -823,6 +787,153 @@
       ],
       "artifacts": [
         "SafeMath"
+      ]
+    },
+    "C:\\Work\\hashink\\hashink_contracts\\contracts\\TokenContract.sol": {
+      "lastModificationDate": 1618412654184,
+      "contentHash": "e2bd3dfa035d9fbcd7d6e78782babaf7",
+      "sourceName": "contracts/TokenContract.sol",
+      "solcConfig": {
+        "version": "0.7.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.0"
+      ],
+      "artifacts": [
+        "TokenContract"
+      ]
+    },
+    "C:\\Work\\hashink\\hashink_contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC20\\IERC20Upgradeable.sol": {
+      "lastModificationDate": 1617395106574,
+      "contentHash": "6c8edd65243ec9d6eb91cc63cce2cd16",
+      "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+      "solcConfig": {
+        "version": "0.7.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Upgradeable"
+      ]
+    },
+    "C:\\Work\\hashink\\hashink_contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol": {
+      "lastModificationDate": 1617395106529,
+      "contentHash": "4404d773c16609e9c316b0acaa487556",
+      "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol",
+      "solcConfig": {
+        "version": "0.7.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/ContextUpgradeable.sol",
+        "./IERC20Upgradeable.sol",
+        "../../math/SafeMathUpgradeable.sol",
+        "../../proxy/Initializable.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20Upgradeable"
+      ]
+    },
+    "C:\\Work\\hashink\\hashink_contracts\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1617392287061,
+      "contentHash": "6748815a5b45c4aeeda56819f41190e0",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.7.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
       ]
     }
   }
