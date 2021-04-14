@@ -29,8 +29,8 @@ main()
 
 // Rinkeby
 // ================================
-// AutographContract address =>  0x44fFfF0C4E6FBD74332d3977e77b061B88FCb8bc -> 0x327c50123efee7fe15cc27c4d796cac4433f8f79
-// RequestContract address =>  0xC317Dcdd36b122b993c971C1BCfB1c822323a5D7 -> 0x6ce77ef56c7e6c6410bd37bdf6598124ee351ddc
+// AutographContract address =>  0xA2879ac731dAAB8B08865759870e9c33c951B7a3 -> 0x327c50123efee7fe15cc27c4d796cac4433f8f79
+// RequestContract address =>  0xfe0E8977dD57aCfb1B4444E28A27e2B1F587C3a1 -> 0xd2f088f53fb81b57c0898b1720bb399714041ef2
 
 // Goerli
 // ================================
