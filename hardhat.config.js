@@ -23,7 +23,7 @@ module.exports = {
       accounts: [`0x${process.env.MUMBAI_PRIVATE_KEY}`]
     },
     // matic: { //137
-    //   url: "https://rpc-mumbai.maticvigil.com",
+    //   url: "https://rpc-mainnet.maticvigil.com",
     //   accounts: [`0x${process.env.MATIC_PRIVATE_KEY}`]
     // },
     // xdai: { //100

@@ -575,8 +575,8 @@
       ]
     },
     "C:\\Work\\hashink\\hashink_contracts\\contracts\\RequestContract.sol": {
-      "lastModificationDate": 1618235440070,
-      "contentHash": "bf6c248b3799ba7df3300e18c54565b4",
+      "lastModificationDate": 1618396182150,
+      "contentHash": "8e2d0f55ca1330a4e7ffe2b2e426cd08",
       "sourceName": "contracts/RequestContract.sol",
       "solcConfig": {
         "version": "0.7.0",

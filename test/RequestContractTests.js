@@ -90,10 +90,10 @@ describe("Requests Contract", function() {
             await requestContract.connect(addrs[0]).createRequest(addrs[1].address, responseTime, {value: price});
 
             expect(await requestContract.getBalance()).to.equal(ethers.utils.parseEther('3'));
-            expect(await requestContract.requesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
-            expect(await requestContract.requesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.vipBalance(addr1.address)).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.vipBalance(addrs[1].address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addr2).getRequesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addrs[0]).getRequesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
+            expect(await requestContract.connect(addr1).getVIPBalance(addr1.address)).to.equal(ethers.utils.parseEther('2'));
+            expect(await requestContract.connect(addrs[1]).getVIPBalance(addrs[1].address)).to.equal(ethers.utils.parseEther('1'));
         });
 
         it("Should send a valid amount when creating a request", async function () {
@@ -131,17 +131,17 @@ describe("Requests Contract", function() {
             await requestContract.connect(addrs[0]).createRequest(addr2.address, responseTime, {value: price});
 
             expect(await requestContract.getBalance()).to.equal(ethers.utils.parseEther('3'));
-            expect(await requestContract.requesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
-            expect(await requestContract.requesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.vipBalance(addr1.address)).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.vipBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addr2).getRequesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addrs[0]).getRequesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
+            expect(await requestContract.connect(addr1).getVIPBalance(addr1.address)).to.equal(ethers.utils.parseEther('2'));
+            expect(await requestContract.connect(addr2).getVIPBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
 
             await requestContract.connect(addr2).deleteRequest(0);
             expect(await requestContract.getBalance()).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.requesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('0'));
-            expect(await requestContract.requesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.vipBalance(addr1.address)).to.equal(ethers.utils.parseEther('1'));
-            expect(await requestContract.vipBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addr2).getRequesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('0'));
+            expect(await requestContract.connect(addrs[0]).getRequesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
+            expect(await requestContract.connect(addr1).getVIPBalance(addr1.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addr2).getVIPBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
         });
 
         it("Shouldn't delete a request before locking period expired", async function () {
@@ -209,17 +209,17 @@ describe("Requests Contract", function() {
             await requestContract.connect(addrs[0]).createRequest(addr2.address, responseTime, {value: price});
 
             expect(await requestContract.getBalance()).to.equal(ethers.utils.parseEther('3'));
-            expect(await requestContract.requesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
-            expect(await requestContract.requesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.vipBalance(addr1.address)).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.vipBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addr2).getRequesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addrs[0]).getRequesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
+            expect(await requestContract.connect(addr1).getVIPBalance(addr1.address)).to.equal(ethers.utils.parseEther('2'));
+            expect(await requestContract.connect(addr2).getVIPBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
 
             await requestContract.connect(addr1).signRequest(0, imageURI, metadataURI);
             expect(await requestContract.getBalance()).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.requesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('0'));
-            expect(await requestContract.requesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
-            expect(await requestContract.vipBalance(addr1.address)).to.equal(ethers.utils.parseEther('1'));
-            expect(await requestContract.vipBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addr2).getRequesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('0'));
+            expect(await requestContract.connect(addrs[0]).getRequesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
+            expect(await requestContract.connect(addr1).getVIPBalance(addr1.address)).to.equal(ethers.utils.parseEther('1'));
+            expect(await requestContract.connect(addr2).getVIPBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
         });
 
         it("Shouldn't be able to sign a request if sender is not the recipient", async function () {    

@@ -18,8 +18,8 @@ contract RequestContract is OwnableUpgradeable {
     // Variables
     AutographContract private autographContract;
     Request[] public requests;
-    mapping(address => uint) public requesterBalance;
-    mapping(address => uint) public vipBalance;
+    mapping(address => uint) private requesterBalance;
+    mapping(address => uint) private vipBalance;
     uint public numberOfPendingRequests;
     uint public feePercent;
 
@@ -126,6 +126,26 @@ contract RequestContract is OwnableUpgradeable {
      */
     function getBalance() public view returns (uint) {
         return address(this).balance;
+    }
+
+    /**
+     @notice Method used to return the requester balance.
+     @param addr - Requester address.
+     @return Current requester balance.
+     */
+    function getRequesterBalance(address addr) public view returns (uint) {
+        require(addr == msg.sender, 'You are not the owner of the request');
+        return requesterBalance[msg.sender];
+    }
+
+    /**
+     @notice Method used to return the VIP balance.
+     @param addr - VIP address.
+     @return Current VIP balance.
+     */
+    function getVIPBalance(address addr) public view returns (uint) {
+        require(addr == msg.sender, 'You are not the owner of the request');
+        return vipBalance[msg.sender];
     }
 
     /**
