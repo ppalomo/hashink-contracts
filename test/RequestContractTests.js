@@ -32,7 +32,6 @@ describe("Requests Contract", function() {
         TokenContract = await ethers.getContractFactory("TokenContract");
         tokenContract = await TokenContract.deploy();
         expect(tokenContract.address).to.properAddress;
-        console.log(tokenContract.address);
 
         // Deploying autograph contract
         AutographContract = await ethers.getContractFactory("AutographContract");
@@ -49,6 +48,7 @@ describe("Requests Contract", function() {
 
         // Minting tokens
         await tokenContract.connect(owner).mint(addr2.address, 100);
+        await tokenContract.connect(owner).mint(addrs[0].address, 100);
     });
 
     // describe("Upgrade Contract", function () {
@@ -73,70 +73,95 @@ describe("Requests Contract", function() {
     describe("Create Request", function() {
 
         it("Should create a new request", async function () {
-            
-            const balance = await tokenContract.balanceOf(addr2.address);
-            console.log(balance.toString());
+            const requesterInitialBalance = await tokenContract.balanceOf(addr2.address);
+            const contractInitialBalance = await tokenContract.balanceOf(requestContract.address);
+                        
+            await tokenContract.connect(addr2).approve(requestContract.address, price);
+            await expect(
+                requestContract.connect(addr2).createRequest(addr1.address, price, responseTime))
+            .to.emit(requestContract, 'RequestCreated');
 
-            await requestContract.connect(addr2).createRequest(addr1.address, price, responseTime);
-
-            expect(1).to.equal(1);
-            
-            // await expect(
-            //     requestContract.connect(addr2).createRequest(addr1.address, price, responseTime))
-            // .to.emit(requestContract, 'RequestCreated');
-
-            // expect(await requestContract.getBalance()).to.equal(price);
-            // expect(await requestContract.getTotalSupply()).to.equal(1);
-            // expect(await requestContract.numberOfPendingRequests()).to.equal(1);
+            expect(await tokenContract.balanceOf(addr2.address)).to.equal(requesterInitialBalance-price);
+            expect(await tokenContract.balanceOf(requestContract.address)).to.equal(contractInitialBalance+price);
+            expect(await requestContract.getTotalSupply()).to.equal(1);
+            expect(await requestContract.numberOfPendingRequests()).to.equal(1);
         });
 
-    //     it("Should create many requests for a celebrity", async function () {
-    //         await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: price});
-    //         await requestContract.connect(addrs[0]).createRequest(addr1.address, responseTime, {value: price});
+        it("Should create many requests for a celebrity", async function () {
+            await tokenContract.connect(addr2).approve(requestContract.address, price);
+            await requestContract.connect(addr2).createRequest(addr1.address, price, responseTime);
 
-    //         expect(await requestContract.getTotalSupply()).to.equal(2);
-    //         expect(await requestContract.numberOfPendingRequests()).to.equal(2);
-    //     });
+            await tokenContract.connect(addrs[0]).approve(requestContract.address, price);
+            await requestContract.connect(addrs[0]).createRequest(addr1.address, price, responseTime);
 
-    //     it("Should update balances after creating a request", async function () {
-    //         price = ethers.utils.parseEther('1');
+            expect(await requestContract.getTotalSupply()).to.equal(2);
+            expect(await requestContract.numberOfPendingRequests()).to.equal(2);
+        });
 
-    //         await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: price});
-    //         await requestContract.connect(addrs[0]).createRequest(addr1.address, responseTime, {value: price});
-    //         await requestContract.connect(addrs[0]).createRequest(addrs[1].address, responseTime, {value: price});
+        it("Should update balances after creating a request", async function () {
+            const requester1InitialBalance = await tokenContract.balanceOf(addr2.address);
+            const requester2InitialBalance = await tokenContract.balanceOf(addrs[0].address);
+            const contractInitialBalance = await tokenContract.balanceOf(requestContract.address);
 
-    //         expect(await requestContract.getBalance()).to.equal(ethers.utils.parseEther('3'));
-    //         expect(await requestContract.connect(addr2).getRequesterBalance(addr2.address)).to.equal(ethers.utils.parseEther('1'));
-    //         expect(await requestContract.connect(addrs[0]).getRequesterBalance(addrs[0].address)).to.equal(ethers.utils.parseEther('2'));
-    //         expect(await requestContract.connect(addr1).getVIPBalance(addr1.address)).to.equal(ethers.utils.parseEther('2'));
-    //         expect(await requestContract.connect(addrs[1]).getVIPBalance(addrs[1].address)).to.equal(ethers.utils.parseEther('1'));
-    //     });
+            await tokenContract.connect(addr2).approve(requestContract.address, price);
+            await requestContract.connect(addr2).createRequest(addr1.address, price, responseTime);
 
-    //     it("Should send a valid amount when creating a request", async function () {
-    //         await expect(
-    //             requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: 0})
-    //         ).to.be.revertedWith('Sent amount must be greater than 0');
-    //     });
-    
+            await tokenContract.connect(addrs[0]).approve(requestContract.address, price);
+            await requestContract.connect(addrs[0]).createRequest(addr1.address, price, responseTime);
+
+            await tokenContract.connect(addrs[0]).approve(requestContract.address, price);
+            await requestContract.connect(addrs[0]).createRequest(addrs[1].address, price, responseTime);
+
+            expect(await requestContract.getBalance()).to.equal(30);
+            expect(await requestContract.connect(addr2).getRequesterBalance(addr2.address)).to.equal(price);
+            expect(await requestContract.connect(addrs[0]).getRequesterBalance(addrs[0].address)).to.equal(price * 2);
+            expect(await requestContract.connect(addr1).getVIPBalance(addr1.address)).to.equal(price * 2);
+            expect(await requestContract.connect(addrs[1]).getVIPBalance(addrs[1].address)).to.equal(price);
+
+            expect(await tokenContract.balanceOf(addr2.address)).to.equal(requester1InitialBalance-price);
+            expect(await tokenContract.balanceOf(addrs[0].address)).to.equal(requester2InitialBalance-price*2);
+            expect(await tokenContract.balanceOf(requestContract.address)).to.equal(contractInitialBalance+price*3);
+        });
+
+        it("Should send a valid amount when creating a request", async function () {
+            await tokenContract.connect(addr2).approve(requestContract.address, price);
+
+            await expect(                
+                requestContract.connect(addr2).createRequest(addr1.address, 0, responseTime)
+            ).to.be.revertedWith('Sent amount must be greater than 0');
+        });
+
+        it("Should have enough token allowance to create a request", async function () {
+            await expect(
+                requestContract.connect(addr2).createRequest(addr1.address, price, responseTime)
+            ).to.be.revertedWith('Token allowance too low');
+
+            await tokenContract.connect(addr2).approve(requestContract.address, price-1);
+            await expect(
+                requestContract.connect(addr2).createRequest(addr1.address, price, responseTime)
+            ).to.be.revertedWith('Token allowance too low');
+        });
+
     });
 
-    // describe("Delete Request", function() {
+    describe("Delete Request", function() {
 
-    //     it("Should be able to delete a request when locking period expired", async function () {
-    //         responseTime = 0;
+        it("Should be able to delete a request when locking period expired", async function () {
+            responseTime = 0;
             
-    //         await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: price});
-    //         expect(await requestContract.getBalance()).to.equal(price);
-    //         expect(await requestContract.numberOfPendingRequests()).to.equal(1);
+            await tokenContract.connect(addr2).approve(requestContract.address, price);
+            await requestContract.connect(addr2).createRequest(addr1.address, price, responseTime);
+            expect(await requestContract.getBalance()).to.equal(price);
+            expect(await requestContract.numberOfPendingRequests()).to.equal(1);
 
-    //         await expect(
-    //             requestContract.connect(addr2).deleteRequest(0)
-    //         ).to.emit(requestContract, 'RequestDeleted');
+            // await expect(
+            //     requestContract.connect(addr2).deleteRequest(0)
+            // ).to.emit(requestContract, 'RequestDeleted');
 
-    //         expect(await requestContract.getBalance()).to.equal(0);
-    //         expect(await requestContract.numberOfPendingRequests()).to.equal(0);
-    //         expect(await requestContract.getTotalSupply()).to.equal(1);
-    //     });
+            // expect(await requestContract.getBalance()).to.equal(0);
+            // expect(await requestContract.numberOfPendingRequests()).to.equal(0);
+            // expect(await requestContract.getTotalSupply()).to.equal(1);
+        });
 
     //     it("Should update balances when deleting a request", async function () {
     //         price = ethers.utils.parseEther('1');
@@ -274,7 +299,7 @@ describe("Requests Contract", function() {
     //         ).to.be.reverted;
     //     });
 
-    // });
+    });
 
     // describe("Fees Management", function() {
 

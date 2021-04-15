@@ -55,24 +55,25 @@ contract RequestContract is OwnableUpgradeable {
      @param responseTime - VIP response time.
      */
     function createRequest(address to, uint price, uint responseTime) public {
+        require(to != address(0), 'A valid address is required');
+        require(price > 0, 'Sent amount must be greater than 0');
 
+        // Transfering requester tokens to contract escrow
+        require(token.allowance(msg.sender, address(this)) >= price, "Token allowance too low");
         bool sent = token.transferFrom(msg.sender, address(this), price);
         require(sent, "Token transfer failed");
 
-        // require(to != address(0), 'A valid address is required');
-        // require(msg.value > 0, 'Sent amount must be greater than 0');
+        // Creating request
+        Request memory newRequest = Request(msg.sender, to, price, responseTime, block.timestamp);
+        requests.push(newRequest);
+        uint id = requests.length - 1;
+        numberOfPendingRequests += 1;
 
-        // // Creating request
-        // Request memory newRequest = Request(msg.sender, to, msg.value, responseTime, block.timestamp);
-        // requests.push(newRequest);
-        // uint id = requests.length - 1;
-        // numberOfPendingRequests += 1;
+        // Updating balances
+        requesterBalance[msg.sender] += price;
+        vipBalance[to] += price;
 
-        // // Updating balances
-        // requesterBalance[msg.sender] += msg.value;
-        // vipBalance[to] += msg.value;
-
-        // emit RequestCreated(id, newRequest.from, newRequest.to, newRequest.price, newRequest.responseTime, newRequest.created);
+        emit RequestCreated(id, newRequest.from, newRequest.to, newRequest.price, newRequest.responseTime, newRequest.created);
     }
 
     /**
@@ -85,7 +86,10 @@ contract RequestContract is OwnableUpgradeable {
         require(block.timestamp >= request.created + (request.responseTime * 1 days), 'You must wait the response time to delete this request');
 
         // Transfering amount payed to user
-        payable(msg.sender).transfer(request.price);
+        bool sent = token.transfer(msg.sender, price);
+        require(sent, "Token transfer failed");
+        
+        // Deleting the request
         delete requests[id];
         numberOfPendingRequests -= 1;
 
@@ -96,50 +100,50 @@ contract RequestContract is OwnableUpgradeable {
         emit RequestDeleted(id, request.from, request.to, request.price, request.responseTime, request.created);
     }
 
-    /**
-     @notice Method used to sign a pending request.
-     @param id - Request index.
-     @param imageURI - Autograph image URI.
-     @param metadataURI - Autograph metadata URI.
-     */
-    function signRequest(uint id, string memory imageURI, string memory metadataURI) public {
-        Request memory request = requests[id];
+    // /**
+    //  @notice Method used to sign a pending request.
+    //  @param id - Request index.
+    //  @param imageURI - Autograph image URI.
+    //  @param metadataURI - Autograph metadata URI.
+    //  */
+    // function signRequest(uint id, string memory imageURI, string memory metadataURI) public {
+    //     Request memory request = requests[id];
 
-        require(request.to == msg.sender, 'You are not the recipient of the request');
-        require(address(this).balance >= request.price, 'Balance should be greater than request price');
+    //     require(request.to == msg.sender, 'You are not the recipient of the request');
+    //     require(address(this).balance >= request.price, 'Balance should be greater than request price');
 
-        // Minting the NFT
-        uint tokenId = autographContract.mint(request.from, msg.sender, imageURI, metadataURI);
-        require(autographContract.ownerOf(tokenId) == request.from, 'Token was not created correctly');
+    //     // Minting the NFT
+    //     uint tokenId = autographContract.mint(request.from, msg.sender, imageURI, metadataURI);
+    //     require(autographContract.ownerOf(tokenId) == request.from, 'Token was not created correctly');
 
-        // Adding request price to VIP balance
-        address payable addr = payable(request.to);
-        address payable ownerAddr = payable(owner());
+    //     // Adding request price to VIP balance
+    //     address payable addr = payable(request.to);
+    //     address payable ownerAddr = payable(owner());
 
-        // Calculating and transfering fees
-        uint fee = request.price * feePercent / 100;
-        ownerAddr.transfer(fee);
+    //     // Calculating and transfering fees
+    //     uint fee = request.price * feePercent / 100;
+    //     ownerAddr.transfer(fee);
 
-        // Transfering payment to VIP
-        addr.transfer(request.price - fee);
+    //     // Transfering payment to VIP
+    //     addr.transfer(request.price - fee);
 
-        // Deleting request
-        delete requests[id];
-        numberOfPendingRequests -= 1;
+    //     // Deleting request
+    //     delete requests[id];
+    //     numberOfPendingRequests -= 1;
 
-        // Updating balances
-        requesterBalance[request.from] -= request.price;
-        vipBalance[msg.sender] -= request.price;
+    //     // Updating balances
+    //     requesterBalance[request.from] -= request.price;
+    //     vipBalance[msg.sender] -= request.price;
 
-        emit RequestSigned(id, request.from, request.to, request.price, request.responseTime, request.created, imageURI, metadataURI);
-    }
+    //     emit RequestSigned(id, request.from, request.to, request.price, request.responseTime, request.created, imageURI, metadataURI);
+    // }
 
     /**
      @notice Method used to return the contract balance.
      @return Current contract balance.
      */
     function getBalance() public view returns (uint) {
-        return address(this).balance;
+        return token.balanceOf(address(this));
     }
 
     /**
