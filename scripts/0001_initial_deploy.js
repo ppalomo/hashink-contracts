@@ -32,12 +32,7 @@ main()
 // AutographContract address =>  0xA2879ac731dAAB8B08865759870e9c33c951B7a3 -> 0x327c50123efee7fe15cc27c4d796cac4433f8f79
 // RequestContract address =>  0xfe0E8977dD57aCfb1B4444E28A27e2B1F587C3a1 -> 0xd2f088f53fb81b57c0898b1720bb399714041ef2
 
-// Goerli
-// ================================
-// AutographContract address =>  0x5bf00e301c468FA372233Df42565f44643A88878 -> 0x0da6da70d9666dcf2b96493af83c4f256fb4e153
-// RequestContract address =>  0xAd942fC81269e553184FE96D2e53BEcea2DCc4ba -> 0x05ed27fc2f2de5bf0b2b60db4eeca79ea9a08e0f
-
 // Mumbai
 // ================================
-// AutographContract address =>  0xcB50cD0c169a0D5605BD7554E6Fd6D795ca34344
-// RequestContract address =>  0x05Ed27fc2f2de5bF0B2B60dB4EeCa79ea9A08e0F -> 0x5bf00e301c468fa372233df42565f44643a88878
+// AutographContract address =>  0xAd942fC81269e553184FE96D2e53BEcea2DCc4ba -> 0xab4ea7f74f7eaeb739282497ec448fdbc93d2883
+// RequestContract address =>  0x1DAA3e62324B43B71A207353e20F44B4A87C89Ce
