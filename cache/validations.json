@@ -39,6 +39,227 @@
           "layoutVersion": "1.1"
         }
       },
+      "Initializable": {
+        "inherit": [],
+        "libraries": [
+          "AddressUpgradeable"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_bool",
+              "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:25"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:30"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "AddressUpgradeable": {
+        "version": {
+          "withMetadata": "ca5ba1de1c19d4502fca50d293f0ad067373918c8386491a288d663b70c98a2f",
+          "withoutMetadata": "aaa148c474cd10e1a6cd0a52c0b55f1aa9b7bb7b42d7f1cb5acaea4f42f04bc8",
+          "linkedWithoutMetadata": "aaa148c474cd10e1a6cd0a52c0b55f1aa9b7bb7b42d7f1cb5acaea4f42f04bc8"
+        },
+        "inherit": [],
+        "libraries": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "ContextUpgradeable": {
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "ContextUpgradeable",
+              "label": "__gap",
+              "type": "t_array(t_uint256)50_storage",
+              "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:31"
+            }
+          ],
+          "types": {
+            "t_array(t_uint256)50_storage": {
+              "label": "uint256[50]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IAutographContract": {
+        "inherit": [],
+        "libraries": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "RequestContract": {
+        "version": {
+          "withMetadata": "5faf1996cbfe96333ef50fa04b00343ae3f229ad8cc7c4144c4109c1a099eae1",
+          "withoutMetadata": "de64417e13f19809abe20233c3db9d070d95980cd3d26da159621b27aa508666",
+          "linkedWithoutMetadata": "de64417e13f19809abe20233c3db9d070d95980cd3d26da159621b27aa508666"
+        },
+        "inherit": [
+          "OwnableUpgradeable",
+          "ContextUpgradeable",
+          "Initializable"
+        ],
+        "libraries": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "RequestContract",
+              "label": "autographContract",
+              "type": "t_contract(IAutographContract)509",
+              "src": "contracts\\RequestContract.sol:25"
+            },
+            {
+              "contract": "RequestContract",
+              "label": "requests",
+              "type": "t_array(t_struct(Request)522_storage)dyn_storage",
+              "src": "contracts\\RequestContract.sol:26"
+            },
+            {
+              "contract": "RequestContract",
+              "label": "requesterBalance",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts\\RequestContract.sol:27"
+            },
+            {
+              "contract": "RequestContract",
+              "label": "vipBalance",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts\\RequestContract.sol:28"
+            },
+            {
+              "contract": "RequestContract",
+              "label": "numberOfPendingRequests",
+              "type": "t_uint256",
+              "src": "contracts\\RequestContract.sol:29"
+            },
+            {
+              "contract": "RequestContract",
+              "label": "feePercent",
+              "type": "t_uint256",
+              "src": "contracts\\RequestContract.sol:30"
+            }
+          ],
+          "types": {
+            "t_contract(IAutographContract)509": {
+              "label": "contract IAutographContract"
+            },
+            "t_array(t_struct(Request)522_storage)dyn_storage": {
+              "label": "struct RequestContract.Request[]"
+            },
+            "t_struct(Request)522_storage": {
+              "label": "struct RequestContract.Request",
+              "members": [
+                {
+                  "label": "from",
+                  "type": "t_address"
+                },
+                {
+                  "label": "to",
+                  "type": "t_address"
+                },
+                {
+                  "label": "price",
+                  "type": "t_uint256"
+                },
+                {
+                  "label": "responseTime",
+                  "type": "t_uint256"
+                },
+                {
+                  "label": "created",
+                  "type": "t_uint256"
+                }
+              ]
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "OwnableUpgradeable": {
+        "inherit": [
+          "ContextUpgradeable",
+          "Initializable"
+        ],
+        "libraries": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:20"
+            },
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "__gap",
+              "type": "t_array(t_uint256)49_storage",
+              "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            },
+            "t_array(t_uint256)49_storage": {
+              "label": "uint256[49]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
       "ERC165Upgradeable": {
         "inherit": [
           "IERC165Upgradeable",

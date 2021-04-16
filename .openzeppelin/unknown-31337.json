@@ -437,7 +437,7 @@
     },
     "de64417e13f19809abe20233c3db9d070d95980cd3d26da159621b27aa508666": {
       "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-      "txHash": "0x85762f60d03d69d9dcf93ecc9557b68cda9bd3529980f0bc13dbfd44e7f426a8",
+      "txHash": "0x4c743b6f7d2888170f1d3242a3cf25bd20d8e0d746d8c96293ad758371a3ba72",
       "layout": {
         "storage": [
           {
@@ -473,48 +473,48 @@
           {
             "contract": "RequestContract",
             "label": "autographContract",
-            "type": "t_contract(AutographContract)3340",
-            "src": "contracts\\RequestContract.sol:19"
+            "type": "t_contract(IAutographContract)509",
+            "src": "contracts\\RequestContract.sol:25"
           },
           {
             "contract": "RequestContract",
             "label": "requests",
-            "type": "t_array(t_struct(Request)3357_storage)dyn_storage",
-            "src": "contracts\\RequestContract.sol:20"
+            "type": "t_array(t_struct(Request)522_storage)dyn_storage",
+            "src": "contracts\\RequestContract.sol:26"
           },
           {
             "contract": "RequestContract",
             "label": "requesterBalance",
             "type": "t_mapping(t_address,t_uint256)",
-            "src": "contracts\\RequestContract.sol:21"
+            "src": "contracts\\RequestContract.sol:27"
           },
           {
             "contract": "RequestContract",
             "label": "vipBalance",
             "type": "t_mapping(t_address,t_uint256)",
-            "src": "contracts\\RequestContract.sol:22"
+            "src": "contracts\\RequestContract.sol:28"
           },
           {
             "contract": "RequestContract",
             "label": "numberOfPendingRequests",
             "type": "t_uint256",
-            "src": "contracts\\RequestContract.sol:23"
+            "src": "contracts\\RequestContract.sol:29"
           },
           {
             "contract": "RequestContract",
             "label": "feePercent",
             "type": "t_uint256",
-            "src": "contracts\\RequestContract.sol:24"
+            "src": "contracts\\RequestContract.sol:30"
           }
         ],
         "types": {
-          "t_contract(AutographContract)3340": {
-            "label": "contract AutographContract"
+          "t_contract(IAutographContract)509": {
+            "label": "contract IAutographContract"
           },
-          "t_array(t_struct(Request)3357_storage)dyn_storage": {
+          "t_array(t_struct(Request)522_storage)dyn_storage": {
             "label": "struct RequestContract.Request[]"
           },
-          "t_struct(Request)3357_storage": {
+          "t_struct(Request)522_storage": {
             "label": "struct RequestContract.Request",
             "members": [
               {

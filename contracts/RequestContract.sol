@@ -2,7 +2,12 @@
 pragma solidity ^0.7.0;
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "./AutographContract.sol";
+
+// AutographContract Interface
+interface IAutographContract {
+   function mint(address to, address from, string memory imageURI, string memory metadataURI) external returns (uint);
+   function ownerOf(uint256 tokenId) external view returns (address);
+}
 
 contract RequestContract is OwnableUpgradeable {
 
@@ -16,7 +21,7 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     // Variables
-    AutographContract private autographContract;
+    IAutographContract private autographContract;
     Request[] public requests;
     mapping(address => uint) private requesterBalance;
     mapping(address => uint) private vipBalance;
@@ -35,7 +40,7 @@ contract RequestContract is OwnableUpgradeable {
      */
     function initialize(address _autographContract) public initializer {
         __Ownable_init();
-        autographContract = AutographContract(_autographContract);
+        autographContract = IAutographContract(_autographContract);
         feePercent = 10; // %
     }
 

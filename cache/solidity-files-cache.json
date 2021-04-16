@@ -575,8 +575,8 @@
       ]
     },
     "C:\\Work\\hashink\\hashink_contracts\\contracts\\RequestContract.sol": {
-      "lastModificationDate": 1618396182150,
-      "contentHash": "8e2d0f55ca1330a4e7ffe2b2e426cd08",
+      "lastModificationDate": 1618572661261,
+      "contentHash": "08ed7bc8a7d455544be375c44ea8481a",
       "sourceName": "contracts/RequestContract.sol",
       "solcConfig": {
         "version": "0.7.0",
@@ -601,13 +601,13 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
-        "./AutographContract.sol"
+        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol"
       ],
       "versionPragmas": [
         "^0.7.0"
       ],
       "artifacts": [
+        "IAutographContract",
         "RequestContract"
       ]
     },
