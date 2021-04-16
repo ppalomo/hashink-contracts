@@ -86,7 +86,7 @@ contract RequestContract is OwnableUpgradeable {
         require(block.timestamp >= request.created + (request.responseTime * 1 days), 'You must wait the response time to delete this request');
 
         // Transfering amount payed to user
-        bool sent = token.transfer(msg.sender, price);
+        bool sent = token.transfer(msg.sender, request.price);
         require(sent, "Token transfer failed");
         
         // Deleting the request
@@ -100,43 +100,45 @@ contract RequestContract is OwnableUpgradeable {
         emit RequestDeleted(id, request.from, request.to, request.price, request.responseTime, request.created);
     }
 
-    // /**
-    //  @notice Method used to sign a pending request.
-    //  @param id - Request index.
-    //  @param imageURI - Autograph image URI.
-    //  @param metadataURI - Autograph metadata URI.
-    //  */
-    // function signRequest(uint id, string memory imageURI, string memory metadataURI) public {
-    //     Request memory request = requests[id];
+    /**
+     @notice Method used to sign a pending request.
+     @param id - Request index.
+     @param imageURI - Autograph image URI.
+     @param metadataURI - Autograph metadata URI.
+     */
+    function signRequest(uint id, string memory imageURI, string memory metadataURI) public {
+        Request memory request = requests[id];
 
-    //     require(request.to == msg.sender, 'You are not the recipient of the request');
-    //     require(address(this).balance >= request.price, 'Balance should be greater than request price');
+        require(request.to == msg.sender, 'You are not the recipient of the request');
+        require(getBalance() >= request.price, 'Balance should be greater than request price');
 
-    //     // Minting the NFT
-    //     uint tokenId = autographContract.mint(request.from, msg.sender, imageURI, metadataURI);
-    //     require(autographContract.ownerOf(tokenId) == request.from, 'Token was not created correctly');
+        // Minting the NFT
+        uint tokenId = autographContract.mint(request.from, msg.sender, imageURI, metadataURI);
+        require(autographContract.ownerOf(tokenId) == request.from, 'Token was not created correctly');
 
-    //     // Adding request price to VIP balance
-    //     address payable addr = payable(request.to);
-    //     address payable ownerAddr = payable(owner());
+        // Adding request price to VIP balance
+        address payable vipAddr = payable(request.to);
+        address payable ownerAddr = payable(owner());
 
-    //     // Calculating and transfering fees
-    //     uint fee = request.price * feePercent / 100;
-    //     ownerAddr.transfer(fee);
+        // Calculating and transfering fees
+        uint fee = request.price * feePercent / 100;
+        bool sent = token.transfer(ownerAddr, fee);
+        require(sent, "Token transfer failed");
 
-    //     // Transfering payment to VIP
-    //     addr.transfer(request.price - fee);
+        // Transfering payment to VIP
+        sent = token.transfer(vipAddr, request.price - fee);
+        require(sent, "Token transfer failed");
 
-    //     // Deleting request
-    //     delete requests[id];
-    //     numberOfPendingRequests -= 1;
+        // Deleting request
+        delete requests[id];
+        numberOfPendingRequests -= 1;
 
-    //     // Updating balances
-    //     requesterBalance[request.from] -= request.price;
-    //     vipBalance[msg.sender] -= request.price;
+        // Updating balances
+        requesterBalance[request.from] -= request.price;
+        vipBalance[msg.sender] -= request.price;
 
-    //     emit RequestSigned(id, request.from, request.to, request.price, request.responseTime, request.created, imageURI, metadataURI);
-    // }
+        emit RequestSigned(id, request.from, request.to, request.price, request.responseTime, request.created, imageURI, metadataURI);
+    }
 
     /**
      @notice Method used to return the contract balance.

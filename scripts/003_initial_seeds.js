@@ -9,9 +9,6 @@ async function main() {
 
     // Initializing contracts
     console.log("Initializing contracts...")
-    // CelebrityContract = await ethers.getContractFactory("CelebrityContract");    
-    // celebrityContract = await CelebrityContract.attach(process.env.CELEBRITY_CONTRACT_ADDRESS);
-
     RequestContract = await ethers.getContractFactory("RequestContract");
     requestContract = await RequestContract.attach(process.env.REQUESTS_CONTRACT_ADDRESS);
 
