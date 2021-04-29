@@ -435,9 +435,9 @@
         }
       }
     },
-    "de64417e13f19809abe20233c3db9d070d95980cd3d26da159621b27aa508666": {
+    "b01cf866f8e167365d5913552721a4a8b35983eb47e2a932929a9d8f798b02ea": {
       "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-      "txHash": "0x4c743b6f7d2888170f1d3242a3cf25bd20d8e0d746d8c96293ad758371a3ba72",
+      "txHash": "0x1acc2bde2394565787735e47c491c9a6af4bbfd5cd0f5af40b37ddafe16a8e60",
       "layout": {
         "storage": [
           {
@@ -474,36 +474,42 @@
             "contract": "RequestContract",
             "label": "autographContract",
             "type": "t_contract(IAutographContract)509",
-            "src": "contracts\\RequestContract.sol:25"
+            "src": "contracts\\RequestContract.sol:24"
           },
           {
             "contract": "RequestContract",
             "label": "requests",
             "type": "t_array(t_struct(Request)522_storage)dyn_storage",
-            "src": "contracts\\RequestContract.sol:26"
+            "src": "contracts\\RequestContract.sol:25"
           },
           {
             "contract": "RequestContract",
             "label": "requesterBalance",
             "type": "t_mapping(t_address,t_uint256)",
-            "src": "contracts\\RequestContract.sol:27"
+            "src": "contracts\\RequestContract.sol:26"
           },
           {
             "contract": "RequestContract",
             "label": "vipBalance",
             "type": "t_mapping(t_address,t_uint256)",
-            "src": "contracts\\RequestContract.sol:28"
+            "src": "contracts\\RequestContract.sol:27"
           },
           {
             "contract": "RequestContract",
             "label": "numberOfPendingRequests",
             "type": "t_uint256",
-            "src": "contracts\\RequestContract.sol:29"
+            "src": "contracts\\RequestContract.sol:28"
           },
           {
             "contract": "RequestContract",
             "label": "feePercent",
             "type": "t_uint256",
+            "src": "contracts\\RequestContract.sol:29"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "wallet",
+            "type": "t_address_payable",
             "src": "contracts\\RequestContract.sol:30"
           }
         ],
@@ -547,6 +553,9 @@
           },
           "t_mapping(t_address,t_uint256)": {
             "label": "mapping(address => uint256)"
+          },
+          "t_address_payable": {
+            "label": "address payable"
           },
           "t_array(t_uint256)49_storage": {
             "label": "uint256[49]"

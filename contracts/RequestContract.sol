@@ -27,12 +27,14 @@ contract RequestContract is OwnableUpgradeable {
     mapping(address => uint) private vipBalance;
     uint public numberOfPendingRequests;
     uint public feePercent;
+    address payable public wallet;
 
     // Events
     event RequestCreated(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
     event RequestDeleted(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
     event RequestSigned(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created, string imageURI, string metadataURI);
     event FeePercentChanged(uint feePercent);
+    event WalletChanged(address indexed addr);
 
     /**
      @notice Contract initializer.
@@ -41,6 +43,7 @@ contract RequestContract is OwnableUpgradeable {
     function initialize(address _autographContract) public initializer {
         __Ownable_init();
         autographContract = IAutographContract(_autographContract);
+        wallet = payable(owner());
         feePercent = 10; // %
     }
 
@@ -96,22 +99,19 @@ contract RequestContract is OwnableUpgradeable {
     function signRequest(uint id, string memory imageURI, string memory metadataURI) public {
         Request memory request = requests[id];
 
-        require(request.to == msg.sender, 'You are not the recipient of the request');
+        require(request.to == msg.sender || msg.sender == owner(), 'You are not the recipient of the request');
         require(address(this).balance >= request.price, 'Balance should be greater than request price');
 
         // Minting the NFT
-        uint tokenId = autographContract.mint(request.from, msg.sender, imageURI, metadataURI);
+        uint tokenId = autographContract.mint(request.from, request.to, imageURI, metadataURI);
         require(autographContract.ownerOf(tokenId) == request.from, 'Token was not created correctly');
-
-        // Adding request price to VIP balance
-        address payable addr = payable(request.to);
-        address payable ownerAddr = payable(owner());
 
         // Calculating and transfering fees
         uint fee = request.price * feePercent / 100;
-        ownerAddr.transfer(fee);
+        wallet.transfer(fee);
 
         // Transfering payment to VIP
+        address payable addr = payable(request.to);
         addr.transfer(request.price - fee);
 
         // Deleting request
@@ -177,6 +177,15 @@ contract RequestContract is OwnableUpgradeable {
     function setFeePercent(uint _feePercent) public onlyOwner {
         feePercent = _feePercent;
         emit FeePercentChanged(feePercent);
+    }
+
+    /**
+     @notice Sets the fees wallet where receive the payments.
+     @param _addr - New address.
+     */
+    function setWallet(address payable _addr) public onlyOwner {
+        wallet = _addr;
+        emit WalletChanged(wallet);
     }
 
 }

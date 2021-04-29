@@ -16,7 +16,8 @@ module.exports = {
     },
     ropsten: {
       url: `https://ropsten.infura.io/v3/${process.env.INFURA_API_KEY}`,
-      accounts: [`0x${process.env.ROPSTEN_PRIVATE_KEY}`]
+      accounts: [`0x${process.env.ROPSTEN_PRIVATE_KEY}`],
+      gasPrice: 0
     },
     mumbai: { //80001
       url: "https://rpc-mumbai.maticvigil.com",

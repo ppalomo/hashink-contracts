@@ -232,7 +232,7 @@ describe("Requests Contract", function() {
             ).to.be.revertedWith('You are not the recipient of the request');
         });
 
-        it("Should send fees to owner when signing a request", async function () {
+        it("Should send fees to wallet when signing a request", async function () {
             const feePercent = await requestContract.feePercent();
             const fee = price * feePercent / 100;
             const ownerBalance = await owner.getBalance();
@@ -264,7 +264,9 @@ describe("Requests Contract", function() {
 
         it("Should be able to update fee percent", async function () {   
             expect(await requestContract.feePercent()).to.equal(10);
-            await requestContract.connect(owner).setFeePercent(20);
+            await expect(
+                await requestContract.connect(owner).setFeePercent(20)
+            ).to.emit(requestContract, 'FeePercentChanged');
             expect(await requestContract.feePercent()).to.equal(20);
         });
 
@@ -272,6 +274,58 @@ describe("Requests Contract", function() {
             await expect(
                 requestContract.connect(addr1).setFeePercent(20)
             ).to.be.reverted;
+        });
+
+        it("Should be able to update the wallet address", async function () {   
+            expect(await requestContract.wallet()).to.equal(owner.address);
+            await expect(
+                requestContract.connect(owner).setWallet(addrs[3].address)
+            ).to.emit(requestContract, 'WalletChanged');
+            expect(await requestContract.wallet()).to.equal(addrs[3].address);
+        });
+
+        it("Shouldn't be able to update the wallet address if not the owner", async function () {   
+            expect(await requestContract.wallet()).to.equal(owner.address);            
+            await expect(
+                requestContract.connect(addr2).setWallet(addrs[3].address)
+            ).to.be.reverted;
+        });
+
+        it("Should send fees to new wallet when signing a request", async function () {
+            const feePercent = await requestContract.feePercent();
+            const fee = price * feePercent / 100;
+            const newWalletBalance = await addrs[3].getBalance();
+            const celebBalance = await addr1.getBalance();
+
+            await requestContract.connect(owner).setWallet(addrs[3].address);
+            const ownerBalance = await owner.getBalance();
+            await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: price});                
+            await requestContract.connect(addr1).signRequest(0, imageURI, metadataURI);
+            
+            const expectedWalletBalance = BigNumber(newWalletBalance.toString()).plus(fee);
+            const currentWalletBalance = await addrs[3].getBalance();
+            const currentOwnerBalance = await owner.getBalance();
+            expect(BigNumber(currentWalletBalance.toString()).toString()).to.equal(expectedWalletBalance.toString());
+            expect(BigNumber(currentOwnerBalance.toString()).toString()).to.equal(ownerBalance.toString());
+            expect(await addr1.getBalance()).to.be.above(celebBalance);
+        });
+
+        it("Should be possible to send 100% fees to charity wallet", async function () {
+            await requestContract.connect(owner).setFeePercent(100)
+            const feePercent = await requestContract.feePercent();
+            const fee = price * feePercent / 100;
+            const newWalletBalance = await addrs[3].getBalance();
+            const celebBalance = await addr1.getBalance();
+
+            await requestContract.connect(owner).setWallet(addrs[3].address);
+            await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: price});                
+            await requestContract.connect(owner).signRequest(0, imageURI, metadataURI);
+            
+            const expectedWalletBalance = BigNumber(newWalletBalance.toString()).plus(fee);
+            const currentWalletBalance = await addrs[3].getBalance();
+            const currentCelebBalance = await addr1.getBalance();
+            expect(BigNumber(currentWalletBalance.toString()).toString()).to.equal(expectedWalletBalance.toString());
+            expect(BigNumber(currentCelebBalance.toString()).toString()).to.equal(celebBalance.toString());
         });
 
     });
