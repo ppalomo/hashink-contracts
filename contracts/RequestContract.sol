@@ -2,12 +2,11 @@
 pragma solidity ^0.7.0;
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "hardhat/console.sol";
 
 // AutographContract Interface
 interface IAutographContract {
-    function mint(address to, address[] memory signers, string memory imageURI, string memory metadataURI) external returns (uint);   
-    function ownerOf(uint256 tokenId) external view returns (address);
+   function mint(address to, address from, string memory imageURI, string memory metadataURI) external returns (uint);
+   function ownerOf(uint256 tokenId) external view returns (address);
 }
 
 contract RequestContract is OwnableUpgradeable {
@@ -15,7 +14,7 @@ contract RequestContract is OwnableUpgradeable {
     // Structs
     struct Request {
         address from;
-        mapping(address => bool) signers;
+        address to;
         uint price;
         uint responseTime;
         uint created;
@@ -23,17 +22,17 @@ contract RequestContract is OwnableUpgradeable {
 
     // Variables
     IAutographContract private autographContract;
-    mapping (uint => Request) public requests;
+    Request[] public requests;
     mapping(address => uint) private requesterBalance;
-    uint public numRequests;
+    mapping(address => uint) private vipBalance;
     uint public numberOfPendingRequests;
     uint public feePercent;
     address payable public wallet;
 
     // Events
-    event RequestCreated(uint id, address indexed from, address[] to, uint price, uint responseTime, uint created);
-    event RequestDeleted(uint id, address indexed from, uint price, uint responseTime, uint created);
-    event RequestMinted(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created, string imageURI, string metadataURI);
+    event RequestCreated(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
+    event RequestDeleted(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created);
+    event RequestSigned(uint id, address indexed from, address indexed to, uint price, uint responseTime, uint created, string imageURI, string metadataURI);
     event FeePercentChanged(uint feePercent);
     event WalletChanged(address indexed addr);
 
@@ -50,31 +49,24 @@ contract RequestContract is OwnableUpgradeable {
 
     /**
      @notice Receives the payment when creating a new request.
-     @param signers - VIP addresses or recipients.
+     @param to - VIP address or recipient.
      @param responseTime - VIP response time.
      */
-    function createRequest(address[] memory signers, uint responseTime) public payable {
+    function createRequest(address to, uint responseTime) public payable {
+        require(to != address(0), 'A valid address is required');
         require(msg.value > 0, 'Sent amount must be greater than 0');
-        
-        // Creating the request
-        Request storage newRequest = requests[numRequests];
-        newRequest.from = msg.sender;
-        newRequest.price = msg.value;
-        newRequest.responseTime = responseTime;
-        newRequest.created = block.timestamp;
 
-        for (uint i=0; i<signers.length; i++) {
-            require(signers[i] != address(0), 'A valid address is required');
-            newRequest.signers[signers[i]] = true;
-        }
-
-        numRequests += 1;
+        // Creating request
+        Request memory newRequest = Request(msg.sender, to, msg.value, responseTime, block.timestamp);
+        requests.push(newRequest);
+        uint id = requests.length - 1;
         numberOfPendingRequests += 1;
 
         // Updating balances
         requesterBalance[msg.sender] += msg.value;
+        vipBalance[to] += msg.value;
 
-        emit RequestCreated(numRequests, newRequest.from, signers, newRequest.price, newRequest.responseTime, newRequest.created);
+        emit RequestCreated(id, newRequest.from, newRequest.to, newRequest.price, newRequest.responseTime, newRequest.created);
     }
 
     /**
@@ -82,60 +74,55 @@ contract RequestContract is OwnableUpgradeable {
      @param id - Request index.
      */
     function deleteRequest(uint id) public {
-        Request storage request = requests[id];
-        
+        Request memory request = requests[id];
         require(request.from == msg.sender, 'You are not the owner of the request');
         require(block.timestamp >= request.created + (request.responseTime * 1 days), 'You must wait the response time to delete this request');
 
         // Transfering amount payed to user
         payable(msg.sender).transfer(request.price);
-
-        // Updating balances
-        requesterBalance[msg.sender] -= request.price;
-
-        // Deleting request
         delete requests[id];
         numberOfPendingRequests -= 1;
 
-        emit RequestDeleted(id, request.from, request.price, request.responseTime, request.created);
+        // Updating balances
+        requesterBalance[msg.sender] -= request.price;
+        vipBalance[request.to] -= request.price;
+
+        emit RequestDeleted(id, request.from, request.to, request.price, request.responseTime, request.created);
     }
 
     /**
-     @notice Method used to mint a pending request.
+     @notice Method used to sign a pending request.
      @param id - Request index.
-     @param signers - List of request signers.
      @param imageURI - Autograph image URI.
      @param metadataURI - Autograph metadata URI.
      */
-    function mintRequest(uint id, address[] memory signers, string memory imageURI, string memory metadataURI) public {
-        Request storage request = requests[id];
+    function signRequest(uint id, string memory imageURI, string memory metadataURI) public {
+        Request memory request = requests[id];
 
-        require(request.signers[msg.sender] || msg.sender == owner(), 'You are not an owner of the request');
+        require(request.to == msg.sender || msg.sender == owner(), 'You are not the recipient of the request');
         require(address(this).balance >= request.price, 'Balance should be greater than request price');
 
         // Minting the NFT
-        uint tokenId = autographContract.mint(request.from, signers, imageURI, metadataURI);
+        uint tokenId = autographContract.mint(request.from, request.to, imageURI, metadataURI);
         require(autographContract.ownerOf(tokenId) == request.from, 'Token was not created correctly');
 
         // Calculating and transfering fees
         uint fee = request.price * feePercent / 100;
         wallet.transfer(fee);
 
-        // Transfering payment to signers
-        uint payment = (request.price - fee) / signers.length;
-        for (uint i=0; i<signers.length; i++) {
-            address payable addr = payable(signers[i]);
-            addr.transfer(payment);
-        }
-
-        // Updating balances
-        requesterBalance[request.from] -= request.price;
+        // Transfering payment to VIP
+        address payable addr = payable(request.to);
+        addr.transfer(request.price - fee);
 
         // Deleting request
         delete requests[id];
         numberOfPendingRequests -= 1;
 
-        emit RequestMinted(id, request.from, msg.sender, request.price, request.responseTime, request.created, imageURI, metadataURI);
+        // Updating balances
+        requesterBalance[request.from] -= request.price;
+        vipBalance[msg.sender] -= request.price;
+
+        emit RequestSigned(id, request.from, request.to, request.price, request.responseTime, request.created, imageURI, metadataURI);
     }
 
     /**
@@ -157,11 +144,29 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
+     @notice Method used to return the VIP balance.
+     @param addr - VIP address.
+     @return Current VIP balance.
+     */
+    function getVIPBalance(address addr) public view returns (uint) {
+        require(addr == msg.sender, 'You are not the owner of the request');
+        return vipBalance[msg.sender];
+    }
+
+    /**
+     @notice Gets total number of requests.
+     @return Total number of requests being created.
+     */
+    function getTotalSupply() public view returns (uint) {
+        return requests.length;
+    }
+
+    /**
      @notice Method used know if the locking period has expired.
      @param id - Request index.
      */
     function requestIsLocked(uint id) public view returns (bool) {
-        Request storage request = requests[id];
+        Request memory request = requests[id];
         return block.timestamp < request.created + (request.responseTime * 1 days);
     }
 

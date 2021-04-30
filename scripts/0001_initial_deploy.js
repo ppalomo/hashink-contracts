@@ -5,6 +5,7 @@ async function main() {
     const [deployer] = await ethers.getSigners();
 
     console.log("Deploying contracts with the account => ", deployer.address);
+
     console.log("Account balance => ", (await deployer.getBalance()).toString());
 
     // Deploying autograph contract
@@ -28,14 +29,10 @@ main()
 
 // Rinkeby
 // ================================
-// AutographContract address =>  0xFbd8c6e8b5ff34bd149884158D53a0b8E58861aC -> 0xec6143d5d4beaac6252626a2a0f73d320aaf2292
-// RequestContract address =>  0x284129b07b7c9035a90d7F263F81A753B4b7cbc2 -> 0x2d2e85627c8a76534510031a633da06d4c34ac2e
+// AutographContract address =>  0xA2879ac731dAAB8B08865759870e9c33c951B7a3 -> 0x327c50123efee7fe15cc27c4d796cac4433f8f79
+// RequestContract address =>  0xfe0E8977dD57aCfb1B4444E28A27e2B1F587C3a1 -> 0xd2f088f53fb81b57c0898b1720bb399714041ef2
 
-
-// // // Mumbai
-// // // ================================
-// // // AutographContract address =>  aaaaaa -> aaaaaa
-// // // RequestContract address =>  aaaaaa
-
-// requester: 0x25f1Db85C33E4b3d3732d02371Dd13F7477F6185
-// signers: [0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, 0xDaf3E0F6639776617b8fb1BE07b614aB93Bf19a8]
+// Mumbai
+// ================================
+// AutographContract address =>  0xAd942fC81269e553184FE96D2e53BEcea2DCc4ba -> 0xab4ea7f74f7eaeb739282497ec448fdbc93d2883
+// RequestContract address =>  0x1DAA3e62324B43B71A207353e20F44B4A87C89Ce
