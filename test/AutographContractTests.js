@@ -12,6 +12,7 @@ describe("Autograph Contract", function() {
     let addr1;
     let addr2;
     let addrs;
+    let signers;
     let price;
     let responseTime;
     let imageURI;
@@ -22,6 +23,7 @@ describe("Autograph Contract", function() {
         // Initializing variables
         price = ethers.utils.parseEther('2');
         responseTime = 2;
+        imageURI=
         imageURI = "https://ipfs.io/ipfs/QmWNcYhEcggdm1TFt2m6WmGqqQwfFXudr5eFzKPtm1nYwq";
         metadataURI = "https://ipfs.io/ipfs/QmUCxDBKCrx2JXV4ZNYLwhUPXqTvRAu6Zceoh1FNVumoec";
 
@@ -37,24 +39,21 @@ describe("Autograph Contract", function() {
 
         // Getting tests accounts
         [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
-
+        signers = [addrs[0].address, addrs[1].address, addrs[2].address];
     });
 
     describe("Upgrade Contract", function () {
 
         it("Should upgrade contract", async function () {   
-            await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: ethers.utils.parseEther('1')});
-            await requestContract.connect(addr2).createRequest(addrs[0].address, responseTime, {value: ethers.utils.parseEther('3')});
+            await requestContract.connect(addr2).createRequest(signers, responseTime, {value: ethers.utils.parseEther('1')});
+            await requestContract.connect(addr2).createRequest(signers, responseTime, {value: ethers.utils.parseEther('3')});
 
-            await requestContract.connect(addr1).signRequest(0, imageURI, metadataURI);
-            await requestContract.connect(addrs[0]).signRequest(1, imageURI, metadataURI);
+            await requestContract.connect(addrs[0]).mintRequest(0, signers, imageURI, metadataURI);
+            await requestContract.connect(addrs[1]).mintRequest(1, signers, imageURI, metadataURI);
 
             expect(await autographContract.totalSupply()).to.equal(2);
             expect(await autographContract.ownerOf(0)).to.equal(addr2.address);
             expect(await autographContract.balanceOf(addr2.address)).to.equal(2);
-            let token = await autographContract.autographs(0);
-            expect(token.creator).to.equal(addr1.address);
-            expect(token.imageURI).to.equal(imageURI);
 
             let AutographContractV2;
             AutographContractV2 = await ethers.getContractFactory("AutographContract");
@@ -63,9 +62,6 @@ describe("Autograph Contract", function() {
             expect(await autographContract.totalSupply()).to.equal(2);
             expect(await autographContract.ownerOf(0)).to.equal(addr2.address);
             expect(await autographContract.balanceOf(addr2.address)).to.equal(2);
-            token = await autographContract.autographs(0);
-            expect(token.creator).to.equal(addr1.address);
-            expect(token.imageURI).to.equal(imageURI);
         });
 
     });
@@ -73,28 +69,29 @@ describe("Autograph Contract", function() {
     describe("Mint Autograph", function() {
 
         it("Should mint a correct NFT after signing a request", async function () {
-            const responseTime = 0;
-
-            await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: price});
+            await requestContract.connect(addr2).createRequest(signers, responseTime, {value: price});
             
             await expect (
-                requestContract.connect(addr1).signRequest(0, imageURI, metadataURI)
-            ).to.emit(autographContract, 'AutographMinted');
+                requestContract.connect(addrs[0]).mintRequest(0, signers, imageURI, metadataURI))
+            .to.emit(autographContract, 'AutographMinted')
+            .withArgs(0, signers, addr2.address, imageURI, metadataURI);
 
             expect(await autographContract.totalSupply()).to.equal(1);
             expect(await autographContract.ownerOf(0)).to.equal(addr2.address);
             expect(await autographContract.balanceOf(addr2.address)).to.equal(1);
-            
+
             const token = await autographContract.autographs(0);
-            expect(token.creator).to.equal(addr1.address);
-            expect(token.imageURI).to.equal(imageURI);
+            expect(token).to.equal(imageURI);
         });
 
-        it("Should return token creator", async function () {
-            await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: price});
-            await requestContract.connect(addr1).signRequest(0, imageURI, metadataURI);
+        it("Should return token creators", async function () {
+            await requestContract.connect(addr2).createRequest(signers, responseTime, {value: price});
+            await requestContract.connect(addrs[0]).mintRequest(0, signers, imageURI, metadataURI);
   
-            expect(await autographContract.creatorOf(0)).to.equal(addr1.address);
+            const tokenSigners = await autographContract.creatorOf(0);
+            expect(tokenSigners[0]).to.equal(signers[0]);
+            expect(tokenSigners[1]).to.equal(signers[1]);
+            expect(tokenSigners[2]).to.equal(signers[2]);
         });
 
     });
@@ -104,17 +101,17 @@ describe("Autograph Contract", function() {
         it("Should transfer a token between accounts", async function () {
             const responseTime = 0;
 
-            await requestContract.connect(addr2).createRequest(addr1.address, responseTime, {value: price});
-            await requestContract.connect(addr1).signRequest(0, imageURI, metadataURI);
+            await requestContract.connect(addr2).createRequest(signers, responseTime, {value: price});
+            await requestContract.connect(addrs[0]).mintRequest(0, signers, imageURI, metadataURI);
 
-            await autographContract.connect(addr2).approve(addrs[0].address, 0);
-            await autographContract.connect(addrs[0]).transferFrom(addr2.address, addrs[0].address, 0);
+            await autographContract.connect(addr2).approve(addr1.address, 0);
+            await autographContract.connect(addr1).transferFrom(addr2.address, addr1.address, 0);
 
             expect(await autographContract.totalSupply()).to.equal(1);
             expect(await autographContract.ownerOf(0)).not.equal(addr2.address);
-            expect(await autographContract.ownerOf(0)).to.equal(addrs[0].address);
+            expect(await autographContract.ownerOf(0)).to.equal(addr1.address);
             expect(await autographContract.balanceOf(addr2.address)).to.equal(0);
-            expect(await autographContract.balanceOf(addrs[0].address)).to.equal(1);
+            expect(await autographContract.balanceOf(addr1.address)).to.equal(1);
         });
 
     });

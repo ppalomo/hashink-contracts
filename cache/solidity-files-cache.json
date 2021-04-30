@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Work\\hashink\\hashink_contracts\\contracts\\AutographContract.sol": {
-      "lastModificationDate": 1618217794320,
-      "contentHash": "d921e54a4996c8ef793174572c0db987",
+      "lastModificationDate": 1619702741884,
+      "contentHash": "18885faff5273a17f9c508543178e1cd",
       "sourceName": "contracts/AutographContract.sol",
       "solcConfig": {
         "version": "0.7.0",
@@ -575,8 +575,8 @@
       ]
     },
     "C:\\Work\\hashink\\hashink_contracts\\contracts\\RequestContract.sol": {
-      "lastModificationDate": 1619682550043,
-      "contentHash": "c64142b1bf5ff382bccb892cd5e94b87",
+      "lastModificationDate": 1619687578224,
+      "contentHash": "75e13e2c3df54fc483c45a05902626f5",
       "sourceName": "contracts/RequestContract.sol",
       "solcConfig": {
         "version": "0.7.0",
@@ -601,7 +601,8 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol"
+        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         "^0.7.0"
@@ -649,7 +650,7 @@
       ]
     },
     "C:\\Work\\hashink\\hashink_contracts\\contracts\\HashinkToken.sol": {
-      "lastModificationDate": 1617391976342,
+      "lastModificationDate": 1618567267188,
       "contentHash": "327c779e388b430eb17e5c2ef1f67991",
       "sourceName": "contracts/HashinkToken.sol",
       "solcConfig": {
