@@ -30,12 +30,3 @@ main()
 // ================================
 // AutographContract address =>  0xFbd8c6e8b5ff34bd149884158D53a0b8E58861aC -> 0xec6143d5d4beaac6252626a2a0f73d320aaf2292
 // RequestContract address =>  0x284129b07b7c9035a90d7F263F81A753B4b7cbc2 -> 0x2d2e85627c8a76534510031a633da06d4c34ac2e
-
-
-// // // Mumbai
-// // // ================================
-// // // AutographContract address =>  aaaaaa -> aaaaaa
-// // // RequestContract address =>  aaaaaa
-
-// requester: 0x25f1Db85C33E4b3d3732d02371Dd13F7477F6185
-// signers: [0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC, 0xDaf3E0F6639776617b8fb1BE07b614aB93Bf19a8]
