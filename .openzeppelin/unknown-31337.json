@@ -202,9 +202,146 @@
         }
       }
     },
-    "9ea64edfd352e928be94a9a798c8684a93f938987f8becb66f1a8420cd5f9527": {
+    "6c2ee725d4c9836861684c09f6d7db825029017cd0c03d8686fb39fc46704a05": {
+      "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "txHash": "0x4988b8b5c39847bd9d7fe58bd80155ac99ab368e6b468aaa5a6e4eb23502c5c3",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:25"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:30"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:20"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "autographContract",
+            "type": "t_contract(IAutographContract)511",
+            "src": "contracts\\RequestContract.sol:25"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "requests",
+            "type": "t_mapping(t_uint256,t_struct(Request)526_storage)",
+            "src": "contracts\\RequestContract.sol:26"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "requesterBalance",
+            "type": "t_mapping(t_address,t_uint256)",
+            "src": "contracts\\RequestContract.sol:27"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "numRequests",
+            "type": "t_uint256",
+            "src": "contracts\\RequestContract.sol:28"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "numberOfPendingRequests",
+            "type": "t_uint256",
+            "src": "contracts\\RequestContract.sol:29"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "feePercent",
+            "type": "t_uint256",
+            "src": "contracts\\RequestContract.sol:30"
+          },
+          {
+            "contract": "RequestContract",
+            "label": "wallet",
+            "type": "t_address_payable",
+            "src": "contracts\\RequestContract.sol:31"
+          }
+        ],
+        "types": {
+          "t_contract(IAutographContract)511": {
+            "label": "contract IAutographContract"
+          },
+          "t_mapping(t_uint256,t_struct(Request)526_storage)": {
+            "label": "mapping(uint256 => struct RequestContract.Request)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_struct(Request)526_storage": {
+            "label": "struct RequestContract.Request",
+            "members": [
+              {
+                "label": "from",
+                "type": "t_address"
+              },
+              {
+                "label": "signers",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "price",
+                "type": "t_uint256"
+              },
+              {
+                "label": "responseTime",
+                "type": "t_uint256"
+              },
+              {
+                "label": "created",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_address_payable": {
+            "label": "address payable"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          }
+        }
+      }
+    },
+    "655646aba7e198e00044765ba897f390fdfd48ad855cc0dcd2d6f164a8f7e20d": {
       "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-      "txHash": "0xd7a76e8aa3e4979cd2e29e0f6498fcbd6c25ce18d6b4e680cc59694d4f2ef40f",
+      "txHash": "0xc6b37648a32c3267f891cfd4340cc4f32e2f7b65f8fd22af3bc300a12607e8b9",
       "layout": {
         "storage": [
           {
@@ -240,13 +377,13 @@
           {
             "contract": "ERC721Upgradeable",
             "label": "_holderTokens",
-            "type": "t_mapping(t_address,t_struct(UintSet)3050_storage)",
+            "type": "t_mapping(t_address,t_struct(UintSet)2919_storage)",
             "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC721\\ERC721Upgradeable.sol:34"
           },
           {
             "contract": "ERC721Upgradeable",
             "label": "_tokenOwners",
-            "type": "t_struct(UintToAddressMap)2427_storage",
+            "type": "t_struct(UintToAddressMap)2296_storage",
             "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC721\\ERC721Upgradeable.sol:37"
           },
           {
@@ -294,26 +431,20 @@
           {
             "contract": "AutographContract",
             "label": "autographs",
-            "type": "t_array(t_struct(Autograph)3243_storage)dyn_storage",
+            "type": "t_array(t_struct(Autograph)3113_storage)dyn_storage",
             "src": "contracts\\AutographContract.sol:16"
-          },
-          {
-            "contract": "AutographContract",
-            "label": "version",
-            "type": "t_uint256",
-            "src": "contracts\\AutographContract.sol:17"
           }
         ],
         "types": {
-          "t_array(t_struct(Autograph)3243_storage)dyn_storage": {
+          "t_array(t_struct(Autograph)3113_storage)dyn_storage": {
             "label": "struct AutographContract.Autograph[]"
           },
-          "t_struct(Autograph)3243_storage": {
+          "t_struct(Autograph)3113_storage": {
             "label": "struct AutographContract.Autograph",
             "members": [
               {
-                "label": "creator",
-                "type": "t_address"
+                "label": "creators",
+                "type": "t_array(t_address)dyn_storage"
               },
               {
                 "label": "imageURI",
@@ -321,28 +452,28 @@
               }
             ]
           },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]"
+          },
           "t_address": {
             "label": "address"
           },
           "t_string_storage": {
             "label": "string"
           },
-          "t_uint256": {
-            "label": "uint256"
-          },
-          "t_mapping(t_address,t_struct(UintSet)3050_storage)": {
+          "t_mapping(t_address,t_struct(UintSet)2919_storage)": {
             "label": "mapping(address => struct EnumerableSetUpgradeable.UintSet)"
           },
-          "t_struct(UintSet)3050_storage": {
+          "t_struct(UintSet)2919_storage": {
             "label": "struct EnumerableSetUpgradeable.UintSet",
             "members": [
               {
                 "label": "_inner",
-                "type": "t_struct(Set)2664_storage"
+                "type": "t_struct(Set)2533_storage"
               }
             ]
           },
-          "t_struct(Set)2664_storage": {
+          "t_struct(Set)2533_storage": {
             "label": "struct EnumerableSetUpgradeable.Set",
             "members": [
               {
@@ -364,21 +495,24 @@
           "t_mapping(t_bytes32,t_uint256)": {
             "label": "mapping(bytes32 => uint256)"
           },
-          "t_struct(UintToAddressMap)2427_storage": {
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_struct(UintToAddressMap)2296_storage": {
             "label": "struct EnumerableMapUpgradeable.UintToAddressMap",
             "members": [
               {
                 "label": "_inner",
-                "type": "t_struct(Map)2109_storage"
+                "type": "t_struct(Map)1978_storage"
               }
             ]
           },
-          "t_struct(Map)2109_storage": {
+          "t_struct(Map)1978_storage": {
             "label": "struct EnumerableMapUpgradeable.Map",
             "members": [
               {
                 "label": "_entries",
-                "type": "t_array(t_struct(MapEntry)2101_storage)dyn_storage"
+                "type": "t_array(t_struct(MapEntry)1970_storage)dyn_storage"
               },
               {
                 "label": "_indexes",
@@ -386,10 +520,10 @@
               }
             ]
           },
-          "t_array(t_struct(MapEntry)2101_storage)dyn_storage": {
+          "t_array(t_struct(MapEntry)1970_storage)dyn_storage": {
             "label": "struct EnumerableMapUpgradeable.MapEntry[]"
           },
-          "t_struct(MapEntry)2101_storage": {
+          "t_struct(MapEntry)1970_storage": {
             "label": "struct EnumerableMapUpgradeable.MapEntry",
             "members": [
               {
@@ -431,140 +565,6 @@
           },
           "t_array(t_uint256)50_storage": {
             "label": "uint256[50]"
-          }
-        }
-      }
-    },
-    "b01cf866f8e167365d5913552721a4a8b35983eb47e2a932929a9d8f798b02ea": {
-      "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-      "txHash": "0x1acc2bde2394565787735e47c491c9a6af4bbfd5cd0f5af40b37ddafe16a8e60",
-      "layout": {
-        "storage": [
-          {
-            "contract": "Initializable",
-            "label": "_initialized",
-            "type": "t_bool",
-            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:25"
-          },
-          {
-            "contract": "Initializable",
-            "label": "_initializing",
-            "type": "t_bool",
-            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:30"
-          },
-          {
-            "contract": "ContextUpgradeable",
-            "label": "__gap",
-            "type": "t_array(t_uint256)50_storage",
-            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:31"
-          },
-          {
-            "contract": "OwnableUpgradeable",
-            "label": "_owner",
-            "type": "t_address",
-            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:20"
-          },
-          {
-            "contract": "OwnableUpgradeable",
-            "label": "__gap",
-            "type": "t_array(t_uint256)49_storage",
-            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
-          },
-          {
-            "contract": "RequestContract",
-            "label": "autographContract",
-            "type": "t_contract(IAutographContract)509",
-            "src": "contracts\\RequestContract.sol:24"
-          },
-          {
-            "contract": "RequestContract",
-            "label": "requests",
-            "type": "t_array(t_struct(Request)522_storage)dyn_storage",
-            "src": "contracts\\RequestContract.sol:25"
-          },
-          {
-            "contract": "RequestContract",
-            "label": "requesterBalance",
-            "type": "t_mapping(t_address,t_uint256)",
-            "src": "contracts\\RequestContract.sol:26"
-          },
-          {
-            "contract": "RequestContract",
-            "label": "vipBalance",
-            "type": "t_mapping(t_address,t_uint256)",
-            "src": "contracts\\RequestContract.sol:27"
-          },
-          {
-            "contract": "RequestContract",
-            "label": "numberOfPendingRequests",
-            "type": "t_uint256",
-            "src": "contracts\\RequestContract.sol:28"
-          },
-          {
-            "contract": "RequestContract",
-            "label": "feePercent",
-            "type": "t_uint256",
-            "src": "contracts\\RequestContract.sol:29"
-          },
-          {
-            "contract": "RequestContract",
-            "label": "wallet",
-            "type": "t_address_payable",
-            "src": "contracts\\RequestContract.sol:30"
-          }
-        ],
-        "types": {
-          "t_contract(IAutographContract)509": {
-            "label": "contract IAutographContract"
-          },
-          "t_array(t_struct(Request)522_storage)dyn_storage": {
-            "label": "struct RequestContract.Request[]"
-          },
-          "t_struct(Request)522_storage": {
-            "label": "struct RequestContract.Request",
-            "members": [
-              {
-                "label": "from",
-                "type": "t_address"
-              },
-              {
-                "label": "to",
-                "type": "t_address"
-              },
-              {
-                "label": "price",
-                "type": "t_uint256"
-              },
-              {
-                "label": "responseTime",
-                "type": "t_uint256"
-              },
-              {
-                "label": "created",
-                "type": "t_uint256"
-              }
-            ]
-          },
-          "t_address": {
-            "label": "address"
-          },
-          "t_uint256": {
-            "label": "uint256"
-          },
-          "t_mapping(t_address,t_uint256)": {
-            "label": "mapping(address => uint256)"
-          },
-          "t_address_payable": {
-            "label": "address payable"
-          },
-          "t_array(t_uint256)49_storage": {
-            "label": "uint256[49]"
-          },
-          "t_array(t_uint256)50_storage": {
-            "label": "uint256[50]"
-          },
-          "t_bool": {
-            "label": "bool"
           }
         }
       }

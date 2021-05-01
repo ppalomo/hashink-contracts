@@ -8,43 +8,41 @@ contract AutographContract is ERC721Upgradeable {
 
     // Structs
     struct Autograph {
-        address creator;
+        address[] creators;
         string imageURI;
     }
 
     // Variables
     Autograph[] public autographs;
-    uint public version;
 
     // Events
-    event AutographMinted(uint id, address indexed creator, address indexed owner, string imageURI, string metadataURI);
+    event AutographMinted(uint id, address[] creators, address indexed owner, string imageURI, string metadataURI);
 
     /**
      @notice Contract initializer.
      */
     function initialize() initializer public {
-        __ERC721_init("Hashink Autograph Token", "SIGN");
-        version = 1;
+        __ERC721_init("Hashink Autograph Token", "GRF");
     }
 
-    /** 
+/** 
      @notice Function used to mint a new NFT.
      @param to - Person's wallet address who will receive the NFT.
-     @param from - Person who's minting the NFT (creator).
+     @param signers - Signer list / creators.
      @param imageURI - Link to an image referencing the asset.
      @param metadataURI - Link to metadata.
      */
-    function mint(address to, address from, string memory imageURI, string memory metadataURI) public returns (uint) {
+    function mint(address to, address[] memory signers, string memory imageURI, string memory metadataURI) public returns (uint) {
         uint newId = autographs.length;
 
         autographs.push(
-            Autograph(from, imageURI)
+            Autograph(signers, imageURI)
         );
 
         _safeMint(to, newId);
         _setTokenURI(newId, metadataURI);
 
-        emit AutographMinted(newId, from, to, imageURI, metadataURI);
+        emit AutographMinted(newId, signers, to, imageURI, metadataURI);
         return newId;
     }
 
@@ -52,8 +50,8 @@ contract AutographContract is ERC721Upgradeable {
      @notice Returns autograph creator.
      @param tokenId - Token identifier.
      */
-    function creatorOf(uint tokenId) public view returns (address) {
-        return autographs[tokenId].creator;
+    function creatorOf(uint tokenId) public view returns (address[] memory) {
+        return autographs[tokenId].creators;
     }
 
 }

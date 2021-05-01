@@ -11,9 +11,9 @@
           "type": "address"
         },
         {
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
+          "internalType": "address[]",
+          "name": "signers",
+          "type": "address[]"
         },
         {
           "internalType": "string",
