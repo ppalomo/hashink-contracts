@@ -79,6 +79,8 @@ describe("Autograph Contract", function() {
             expect(await autographContract.totalSupply()).to.equal(1);
             expect(await autographContract.ownerOf(0)).to.equal(addr2.address);
             expect(await autographContract.balanceOf(addr2.address)).to.equal(1);
+            expect(await autographContract.tokenURI(0)).to.equal(metadataURI);
+            expect(await autographContract.imageURI(0)).to.equal(imageURI);
 
             const token = await autographContract.autographs(0);
             expect(token).to.equal(imageURI);

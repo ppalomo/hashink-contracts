@@ -5,7 +5,7 @@ require("@openzeppelin/hardhat-upgrades");
 require("hardhat-gas-reporter");
 
 module.exports = {
-  solidity: "0.7.0",
+  solidity: "0.8.0",
   networks: {
     mainnet: {
       url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
@@ -43,7 +43,7 @@ module.exports = {
   // https://github.com/cgewecke/eth-gas-reporter
   gasReporter: {
     currency: 'USD',
-    enabled: false,
+    enabled: true,
     coinmarketcap: `${process.env.COINMARKETCAP_KEY}`
   }
 };
