@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "D:\\Work\\hashink\\hashink-contracts\\contracts\\AutographContract.sol": {
-      "lastModificationDate": 1619848963498,
-      "contentHash": "18885faff5273a17f9c508543178e1cd",
+      "lastModificationDate": 1619937740783,
+      "contentHash": "96e6477b8cc684274570124717feac8a",
       "sourceName": "contracts/AutographContract.sol",
       "solcConfig": {
         "version": "0.7.0",

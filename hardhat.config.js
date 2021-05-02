@@ -43,7 +43,7 @@ module.exports = {
   // https://github.com/cgewecke/eth-gas-reporter
   gasReporter: {
     currency: 'USD',
-    enabled: false,
+    enabled: true,
     coinmarketcap: `${process.env.COINMARKETCAP_KEY}`
   }
 };

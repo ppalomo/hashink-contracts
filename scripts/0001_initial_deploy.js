@@ -28,5 +28,5 @@ main()
 
 // Rinkeby
 // ================================
-// AutographContract address =>  0xFbd8c6e8b5ff34bd149884158D53a0b8E58861aC -> 0xec6143d5d4beaac6252626a2a0f73d320aaf2292
-// RequestContract address =>  0x284129b07b7c9035a90d7F263F81A753B4b7cbc2 -> 0x2d2e85627c8a76534510031a633da06d4c34ac2e
+// AutographContract address =>  0xE1A19Eb074815e4028768182F8971D222416159A -> 0x8217d31388c8bdd813f7c3e492e0fc731879fbe6
+// RequestContract address =>  0x02503Db8F44F67ED7ED6C85Acab2ad95A9078493 -> 0x2d2e85627c8a76534510031a633da06d4c34ac2e

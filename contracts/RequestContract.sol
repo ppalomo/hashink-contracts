@@ -147,7 +147,7 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
-     @notice Method used to return the requester balance.
+     @notice Method used to return the requester balance. Only requester can call this method.
      @param addr - Requester address.
      @return Current requester balance.
      */
