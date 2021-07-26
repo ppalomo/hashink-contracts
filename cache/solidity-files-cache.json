@@ -1,15 +1,15 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "D:\\Work\\hashink\\hashink-contracts\\contracts\\AutographContract.sol": {
-      "lastModificationDate": 1619937740783,
-      "contentHash": "96e6477b8cc684274570124717feac8a",
+    "C:\\Work\\ethereum\\hashink-contracts\\contracts\\AutographContract.sol": {
+      "lastModificationDate": 1627309308624,
+      "contentHash": "a7ca46387bfc8edc946b04a74fa9dc71",
       "sourceName": "contracts/AutographContract.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -29,24 +29,26 @@
       },
       "imports": [
         "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol",
         "hardhat/console.sol"
       ],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "AutographContract"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\ERC721Upgradeable.sol": {
-      "lastModificationDate": 1617729912821,
-      "contentHash": "cdf1f66a9c0cc71b5ede466399895d1a",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\ERC721Upgradeable.sol": {
+      "lastModificationDate": 1627296227169,
+      "contentHash": "35cf524a3dedfa56d6fdfff4e435405b",
       "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -65,35 +67,68 @@
         }
       },
       "imports": [
-        "../../utils/ContextUpgradeable.sol",
         "./IERC721Upgradeable.sol",
-        "./IERC721MetadataUpgradeable.sol",
-        "./IERC721EnumerableUpgradeable.sol",
         "./IERC721ReceiverUpgradeable.sol",
-        "../../introspection/ERC165Upgradeable.sol",
-        "../../math/SafeMathUpgradeable.sol",
+        "./extensions/IERC721MetadataUpgradeable.sol",
         "../../utils/AddressUpgradeable.sol",
-        "../../utils/EnumerableSetUpgradeable.sol",
-        "../../utils/EnumerableMapUpgradeable.sol",
+        "../../utils/ContextUpgradeable.sol",
         "../../utils/StringsUpgradeable.sol",
-        "../../proxy/Initializable.sol"
+        "../../utils/introspection/ERC165Upgradeable.sol",
+        "../../proxy/utils/Initializable.sol"
       ],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "ERC721Upgradeable"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\hardhat\\console.sol": {
-      "lastModificationDate": 1616827119312,
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\extensions\\ERC721URIStorageUpgradeable.sol": {
+      "lastModificationDate": 1627296227172,
+      "contentHash": "2234ba1fc99283191f9c4e46c7563ddf",
+      "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../ERC721Upgradeable.sol",
+        "../../../proxy/utils/Initializable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC721URIStorageUpgradeable"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1627223975842,
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -119,51 +154,15 @@
         "console"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol": {
-      "lastModificationDate": 1617729911962,
-      "contentHash": "9f901c17a18eadc08042b6a510da3b7d",
-      "sourceName": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../proxy/Initializable.sol"
-      ],
-      "versionPragmas": [
-        ">=0.6.0 <0.8.0"
-      ],
-      "artifacts": [
-        "ContextUpgradeable"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\IERC721Upgradeable.sol": {
-      "lastModificationDate": 1617729913041,
-      "contentHash": "9b8e95b25ad9e9907cef82d4adabe91b",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\IERC721Upgradeable.sol": {
+      "lastModificationDate": 1627296227245,
+      "contentHash": "19b5eecf9c8a8c2b949ee02c905229d4",
       "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -182,96 +181,24 @@
         }
       },
       "imports": [
-        "../../introspection/IERC165Upgradeable.sol"
+        "../../utils/introspection/IERC165Upgradeable.sol"
       ],
       "versionPragmas": [
-        ">=0.6.2 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "IERC721Upgradeable"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\IERC721MetadataUpgradeable.sol": {
-      "lastModificationDate": 1617729913033,
-      "contentHash": "2d7026b65054974c694449d3f243bb39",
-      "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721MetadataUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC721Upgradeable.sol"
-      ],
-      "versionPragmas": [
-        ">=0.6.2 <0.8.0"
-      ],
-      "artifacts": [
-        "IERC721MetadataUpgradeable"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\IERC721EnumerableUpgradeable.sol": {
-      "lastModificationDate": 1617729913023,
-      "contentHash": "91be9105f64b0e3ef04ca0672e5249d5",
-      "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721EnumerableUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC721Upgradeable.sol"
-      ],
-      "versionPragmas": [
-        ">=0.6.2 <0.8.0"
-      ],
-      "artifacts": [
-        "IERC721EnumerableUpgradeable"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\IERC721ReceiverUpgradeable.sol": {
-      "lastModificationDate": 1617729913037,
-      "contentHash": "f7320992df40480ec8045cac518ad11c",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\IERC721ReceiverUpgradeable.sol": {
+      "lastModificationDate": 1627296227241,
+      "contentHash": "4655add0d188acb83025b350b1865d12",
       "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -291,21 +218,161 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "IERC721ReceiverUpgradeable"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\introspection\\ERC165Upgradeable.sol": {
-      "lastModificationDate": 1617729912553,
-      "contentHash": "2fe109cd8f5cb2cc237b5e6a7e99edd7",
-      "sourceName": "@openzeppelin/contracts-upgradeable/introspection/ERC165Upgradeable.sol",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\token\\ERC721\\extensions\\IERC721MetadataUpgradeable.sol": {
+      "lastModificationDate": 1627296227241,
+      "contentHash": "9cd42fc3db4b87cc9110dd648daeee7f",
+      "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC721Upgradeable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721MetadataUpgradeable"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\AddressUpgradeable.sol": {
+      "lastModificationDate": 1627296226839,
+      "contentHash": "2bd96e8402394a4ae3e1c2f2ab29e7af",
+      "sourceName": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AddressUpgradeable"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol": {
+      "lastModificationDate": 1627296226926,
+      "contentHash": "5a73d7f4dcc0f73231e5599a3935b8cf",
+      "sourceName": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../proxy/utils/Initializable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ContextUpgradeable"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\StringsUpgradeable.sol": {
+      "lastModificationDate": 1627296227355,
+      "contentHash": "80d3ad01fbd728e8a0dcde979c610377",
+      "sourceName": "@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "StringsUpgradeable"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\introspection\\ERC165Upgradeable.sol": {
+      "lastModificationDate": 1627296227073,
+      "contentHash": "3649e7528117ffc7d8a3ccf199b0c6d8",
+      "sourceName": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -325,24 +392,24 @@
       },
       "imports": [
         "./IERC165Upgradeable.sol",
-        "../proxy/Initializable.sol"
+        "../../proxy/utils/Initializable.sol"
       ],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "ERC165Upgradeable"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\math\\SafeMathUpgradeable.sol": {
-      "lastModificationDate": 1617729913152,
-      "contentHash": "33cad0216fea16ce4baadc5603b84218",
-      "sourceName": "@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol": {
+      "lastModificationDate": 1627296227264,
+      "contentHash": "cbb8386f0120d46d66ff42dffbbc16c1",
+      "sourceName": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -362,193 +429,21 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
-      ],
-      "artifacts": [
-        "SafeMathUpgradeable"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\AddressUpgradeable.sol": {
-      "lastModificationDate": 1617729911870,
-      "contentHash": "aa72beb3bf14f8394b4a8a292d66589c",
-      "sourceName": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.2 <0.8.0"
-      ],
-      "artifacts": [
-        "AddressUpgradeable"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\EnumerableSetUpgradeable.sol": {
-      "lastModificationDate": 1617729912371,
-      "contentHash": "b927cbeb303f88e9f6b38fdc71a5d381",
-      "sourceName": "@openzeppelin/contracts-upgradeable/utils/EnumerableSetUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.0 <0.8.0"
-      ],
-      "artifacts": [
-        "EnumerableSetUpgradeable"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\EnumerableMapUpgradeable.sol": {
-      "lastModificationDate": 1617729912338,
-      "contentHash": "4ff02b74113158b1360f1eb85a7be7f3",
-      "sourceName": "@openzeppelin/contracts-upgradeable/utils/EnumerableMapUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.0 <0.8.0"
-      ],
-      "artifacts": [
-        "EnumerableMapUpgradeable"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\StringsUpgradeable.sol": {
-      "lastModificationDate": 1617729913164,
-      "contentHash": "f00ef76e89770e6a3e3f0e4da0844794",
-      "sourceName": "@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.0 <0.8.0"
-      ],
-      "artifacts": [
-        "StringsUpgradeable"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol": {
-      "lastModificationDate": 1617729913055,
-      "contentHash": "71b3ac8d4da61bb6c6708c12f56e3c1f",
-      "sourceName": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../utils/AddressUpgradeable.sol"
-      ],
-      "versionPragmas": [
-        ">=0.4.24 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "Initializable"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\introspection\\IERC165Upgradeable.sol": {
-      "lastModificationDate": 1617729912952,
-      "contentHash": "1e80a066fb319fc9752e62673a0e9450",
-      "sourceName": "@openzeppelin/contracts-upgradeable/introspection/IERC165Upgradeable.sol",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\introspection\\IERC165Upgradeable.sol": {
+      "lastModificationDate": 1627296227208,
+      "contentHash": "4db71815975139b4bcedb3b615131302",
+      "sourceName": "@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -568,21 +463,21 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "IERC165Upgradeable"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\contracts\\RequestContract.sol": {
-      "lastModificationDate": 1619848963509,
-      "contentHash": "75e13e2c3df54fc483c45a05902626f5",
+    "C:\\Work\\ethereum\\hashink-contracts\\contracts\\RequestContract.sol": {
+      "lastModificationDate": 1627309442294,
+      "contentHash": "2f60fce8c89cfa53c9c2c38af95e3baf",
       "sourceName": "contracts/RequestContract.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -602,25 +497,26 @@
       },
       "imports": [
         "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol",
+        "./interfaces/IAutographContract.sol",
         "hardhat/console.sol"
       ],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
-        "IAutographContract",
         "RequestContract"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol": {
-      "lastModificationDate": 1617729913105,
-      "contentHash": "91a7735bfcbb48c7482f10f1083a8ed8",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol": {
+      "lastModificationDate": 1627296227295,
+      "contentHash": "0961e9d7e3b0767794d82a179f4b88e4",
       "sourceName": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -640,24 +536,24 @@
       },
       "imports": [
         "../utils/ContextUpgradeable.sol",
-        "../proxy/Initializable.sol"
+        "../proxy/utils/Initializable.sol"
       ],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "OwnableUpgradeable"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\contracts\\HashinkToken.sol": {
-      "lastModificationDate": 1618586265681,
-      "contentHash": "327c779e388b430eb17e5c2ef1f67991",
+    "C:\\Work\\ethereum\\hashink-contracts\\contracts\\HashinkToken.sol": {
+      "lastModificationDate": 1627308265368,
+      "contentHash": "67d573ca80c27c1d2f1138a075c2c321",
       "sourceName": "contracts/HashinkToken.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -677,24 +573,25 @@
       },
       "imports": [
         "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
         "hardhat/console.sol"
       ],
       "versionPragmas": [
-        "^0.7.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "HashinkToken"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
-      "lastModificationDate": 1616829509893,
-      "contentHash": "8065b340476f61365c076897199425f1",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
+      "lastModificationDate": 1627296227189,
+      "contentHash": "acad756301f0fb200ecc66138e8cd5c5",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -713,60 +610,26 @@
         }
       },
       "imports": [
-        "../../utils/Context.sol",
         "./IERC20.sol",
-        "../../math/SafeMath.sol"
+        "./extensions/IERC20Metadata.sol",
+        "../../utils/Context.sol"
       ],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "ERC20"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1616829509871,
-      "contentHash": "2adbd82f6d055a4751566d4671512b03",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.7.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.0 <0.8.0"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
-      "lastModificationDate": 1616829509939,
-      "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
+      "lastModificationDate": 1627296227370,
+      "contentHash": "0eac3e1a83ee62326ca007811285b274",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -786,21 +649,57 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "IERC20"
       ]
     },
-    "D:\\Work\\hashink\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\math\\SafeMath.sol": {
-      "lastModificationDate": 1616829510042,
-      "contentHash": "e03e12206057e809eb76c5f681170c32",
-      "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
+      "lastModificationDate": 1627296227371,
+      "contentHash": "aa1be06992a99bb7393b26a6af3c4dfb",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
       "solcConfig": {
-        "version": "0.7.0",
+        "version": "0.8.0",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1627296227087,
+      "contentHash": "07f148e0d44b2ffc23b3ae6dd6e38cfb",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -820,10 +719,116 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
-        "SafeMath"
+        "Context"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\contracts\\interfaces\\IAutographContract.sol": {
+      "lastModificationDate": 1627302695064,
+      "contentHash": "9668abf1a44b4080bc5243a38b4c1314",
+      "sourceName": "contracts/interfaces/IAutographContract.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAutographContract"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1627296227401,
+      "contentHash": "4fe56b59ced59d87df6b796758f62895",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "C:\\Work\\ethereum\\hashink-contracts\\node_modules\\@openzeppelin\\contracts-upgradeable\\security\\ReentrancyGuardUpgradeable.sol": {
+      "lastModificationDate": 1627296227304,
+      "contentHash": "304d95a6b1f0ca8db842e5fe1f2024a9",
+      "sourceName": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../proxy/utils/Initializable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ReentrancyGuardUpgradeable"
       ]
     }
   }

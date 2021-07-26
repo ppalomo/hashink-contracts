@@ -1,16 +1,16 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
+import './interfaces/IAutographContract.sol';
 import "hardhat/console.sol";
 
-// AutographContract Interface
-interface IAutographContract {
-    function mint(address to, address[] memory signers, string memory imageURI, string memory metadataURI) external returns (uint);   
-    function ownerOf(uint256 tokenId) external view returns (address);
-}
-
-contract RequestContract is OwnableUpgradeable {
+/**
+ * @title Autograph requests contract.
+ * @dev User can create an autograph request and the celebrity can sign this request by minting a new autograph.
+ */
+contract RequestContract is OwnableUpgradeable, ReentrancyGuardUpgradeable {
 
     // Structs
     struct Request {
@@ -38,22 +38,24 @@ contract RequestContract is OwnableUpgradeable {
     event WalletChanged(address indexed addr);
 
     /**
-     @notice Contract initializer.
-     @param _autographContract - NFT Token address.
+     * @notice Contract initializer.
+     * @param _autographContract - NFT Token address.
      */
     function initialize(address _autographContract) public initializer {
         __Ownable_init();
+        __ReentrancyGuard_init();
+
         autographContract = IAutographContract(_autographContract);
         wallet = payable(owner());
         feePercent = 10; // %
     }
 
     /**
-     @notice Receives the payment when creating a new request.
-     @param signers - VIP addresses or recipients.
-     @param responseTime - VIP response time.
+     * @notice Receives the payment when creating a new request.
+     * @param signers - VIP addresses or recipients.
+     * @param responseTime - VIP response time.
      */
-    function createRequest(address[] memory signers, uint responseTime) public payable {
+    function createRequest(address[] memory signers, uint responseTime) public payable nonReentrant {
         require(msg.value > 0, 'Sent amount must be greater than 0');
         
         // Creating the request
@@ -78,20 +80,20 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
-     @notice Method used to remove a request after the locking period expired.
-     @param id - Request index.
+     * @notice Method used to remove a request after the locking period expired.
+     * @param id - Request index.
      */
-    function deleteRequest(uint id) public {
+    function deleteRequest(uint id) public nonReentrant {
         Request storage request = requests[id];
         
         require(request.from == msg.sender, 'You are not the owner of the request');
         require(block.timestamp >= request.created + (request.responseTime * 1 days), 'You must wait the response time to delete this request');
 
-        // Transfering amount payed to user
-        payable(msg.sender).transfer(request.price);
-
         // Updating balances
         requesterBalance[msg.sender] -= request.price;
+
+        // Transfering amount payed to user
+        payable(msg.sender).transfer(request.price);
 
         // Deleting request
         delete requests[id];
@@ -101,13 +103,13 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
-     @notice Method used to mint a pending request.
-     @param id - Request index.
-     @param signers - List of request signers.
-     @param imageURI - Autograph image URI.
-     @param metadataURI - Autograph metadata URI.
+     * @notice Method used to mint a pending request.
+     * @param id - Request index.
+     * @param signers - List of request signers.
+     * @param imageURI - Autograph image URI.
+     * @param metadataURI - Autograph metadata URI.
      */
-    function mintRequest(uint id, address[] memory signers, string memory imageURI, string memory metadataURI) public {
+    function mintRequest(uint id, address[] memory signers, string memory imageURI, string memory metadataURI) public nonReentrant {
         Request storage request = requests[id];
 
         require(request.signers[msg.sender] || msg.sender == owner(), 'You are not an owner of the request');
@@ -139,17 +141,17 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
-     @notice Method used to return the contract balance.
-     @return Current contract balance.
+     * @notice Method used to return the contract balance.
+     * @return Current contract balance.
      */
     function getBalance() public view returns (uint) {
         return address(this).balance;
     }
 
     /**
-     @notice Method used to return the requester balance. Only requester can call this method.
-     @param addr - Requester address.
-     @return Current requester balance.
+     * @notice Method used to return the requester balance. Only requester can call this method.
+     * @param addr - Requester address.
+     * @return Current requester balance.
      */
     function getRequesterBalance(address addr) public view returns (uint) {
         require(addr == msg.sender, 'You are not the owner of the request');
@@ -157,8 +159,8 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
-     @notice Method used know if the locking period has expired.
-     @param id - Request index.
+     * @notice Method used know if the locking period has expired.
+     * @param id - Request index.
      */
     function requestIsLocked(uint id) public view returns (bool) {
         Request storage request = requests[id];
@@ -166,8 +168,8 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
-     @notice Sets fees percent.
-     @param _feePercent - New fee percent.
+     * @notice Sets fees percent.
+     * @param _feePercent - New fee percent.
      */
     function setFeePercent(uint _feePercent) public onlyOwner {
         feePercent = _feePercent;
@@ -175,8 +177,8 @@ contract RequestContract is OwnableUpgradeable {
     }
 
     /**
-     @notice Sets the fees wallet where receive the payments.
-     @param _addr - New address.
+     * @notice Sets the fees wallet where receive the payments.
+     * @param _addr - New address.
      */
     function setWallet(address payable _addr) public onlyOwner {
         wallet = _addr;

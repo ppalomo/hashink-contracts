@@ -6,8 +6,8 @@ use(solidity);
 
 describe("Autograph Contract", function() {
 
-    let RequestContract, AutographContract;
-    let requestContract, autographContract;
+    let RequestContract, AutographContract, HashinkToken;
+    let requestContract, autographContract, mockToken;
     let owner;
     let addr1;
     let addr2;
@@ -27,9 +27,14 @@ describe("Autograph Contract", function() {
         imageURI = "https://ipfs.io/ipfs/QmWNcYhEcggdm1TFt2m6WmGqqQwfFXudr5eFzKPtm1nYwq";
         metadataURI = "https://ipfs.io/ipfs/QmUCxDBKCrx2JXV4ZNYLwhUPXqTvRAu6Zceoh1FNVumoec";
 
+        // Deploying mock token
+        HashinkToken = await ethers.getContractFactory("HashinkToken");
+        mockToken = await HashinkToken.deploy();
+        expect(mockToken.address).to.properAddress;
+
         // Deploying autograph contract
         AutographContract = await ethers.getContractFactory("AutographContract");
-        autographContract = await upgrades.deployProxy(AutographContract);
+        autographContract = await upgrades.deployProxy(AutographContract, [mockToken.address, ethers.utils.parseEther('1')]), { initializer: 'initialize' };
         expect(autographContract.address).to.properAddress;
 
         // Deploying requests contract
@@ -40,6 +45,14 @@ describe("Autograph Contract", function() {
         // Getting tests accounts
         [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
         signers = [addrs[0].address, addrs[1].address, addrs[2].address];
+
+        // Minting mock tokens
+        await Promise.all ([
+            mockToken.mint(addrs[1].address, ethers.utils.parseEther('100')),
+            mockToken.mint(addr2.address, ethers.utils.parseEther('50'))
+        ]);
+        expect(await mockToken.balanceOf(addrs[1].address)).to.equal(ethers.utils.parseEther('100'));
+        expect(await mockToken.balanceOf(addr2.address)).to.equal(ethers.utils.parseEther('50'));
     });
 
     describe("Upgrade Contract", function () {
@@ -107,6 +120,7 @@ describe("Autograph Contract", function() {
             await requestContract.connect(addrs[0]).mintRequest(0, signers, imageURI, metadataURI);
 
             await autographContract.connect(addr2).approve(addr1.address, 0);
+            await mockToken.connect(addr2).approve(autographContract.address, ethers.utils.parseEther('100'));
             await autographContract.connect(addr1).transferFrom(addr2.address, addr1.address, 0);
 
             expect(await autographContract.totalSupply()).to.equal(1);
